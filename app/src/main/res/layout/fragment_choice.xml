@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ChoiceFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="This is choice fragment , UI to be updated" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/title">
+            </ImageView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:text="Verison:dev">
+                </TextView>
+
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/button_multiplayer"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/single_button_1"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp">
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/button_singleplayer"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/single_button_2">
+                </ImageButton>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp">
+
+                <ImageButton
+                    android:id="@+id/button_setting"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/single_button_4">
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/button_store"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/single_button_3">
+                </ImageButton>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/teal_700"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="By Renns , aucki6144" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</FrameLayout>
