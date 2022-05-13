@@ -55,6 +55,12 @@ public class ChoiceFragment extends Fragment {
             }
         });
 
+        buttonSinglePlayer.setOnClickListener(v -> {
+            if(activity!=null){
+                activity.replaceFragmentDifficulty();
+            }
+        });
+
         return view;
     }
 }

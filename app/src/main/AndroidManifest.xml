@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AircraftFight_Android">
         <activity
+            android:name=".activity.GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
         <activity

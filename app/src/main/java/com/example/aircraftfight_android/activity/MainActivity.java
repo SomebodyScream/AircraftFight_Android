@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
+import com.example.aircraftfight_android.fragment.DifficultyFragment;
 
 import java.lang.reflect.Field;
 
@@ -29,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new ChoiceFragment();
         initialFragment(fragment);
 
+    }
+
+    public void replaceFragmentDifficulty(){
+        replaceFragment(new DifficultyFragment());
+    }
+
+    public void startGameActivity(){
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 
     public void replaceFragmentMulti(){
