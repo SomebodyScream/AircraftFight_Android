@@ -1,9 +1,14 @@
 package com.example.aircraftfight_android.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,19 +22,34 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
+import com.example.aircraftfight_android.game.application.ImageManager;
 
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int HEIGHT;
+    public static int WIDTH;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 获取屏幕尺寸
+        Display display = getWindowManager().getDefaultDisplay();
+
+        Point point = new Point();
+        display.getSize(point);
+        WIDTH = point.x;
+        HEIGHT = point.y;
+
+        // 初始化ImageManager
+        ImageManager.initial(getResources());
+
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         Fragment fragment = new ChoiceFragment();
         initialFragment(fragment);
-
     }
 
     public void replaceFragmentDifficulty(){
