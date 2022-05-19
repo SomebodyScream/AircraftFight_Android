@@ -23,6 +23,7 @@ import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
 import com.example.aircraftfight_android.game.application.ImageManager;
+import com.example.aircraftfight_android.helper.MusicServiceHelper;
 
 import java.lang.reflect.Field;
 
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static int HEIGHT;
     public static int WIDTH;
+    public static MusicServiceHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Music service start
+        helper = new MusicServiceHelper(this);
 
         // 获取屏幕尺寸
         Display display = getWindowManager().getDefaultDisplay();
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Fragment fragment = new ChoiceFragment();
         initialFragment(fragment);
+
     }
 
     public void replaceFragmentDifficulty(){

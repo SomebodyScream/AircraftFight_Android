@@ -316,14 +316,6 @@
                     android:text="By Renns , aucki6144 . All rights reserved"
                     tools:ignore="HardcodedText" />
 
-                <Button
-                    android:id="@+id/button_test"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="test">
-                </Button>
-
-
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

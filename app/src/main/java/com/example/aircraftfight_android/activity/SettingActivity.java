@@ -11,7 +11,6 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.aircraftfight_android.R;
-import com.example.aircraftfight_android.helper.MusicServiceHelper;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 public class SettingActivity extends AppCompatActivity {
@@ -20,7 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     String SPLABEL_SETTING = "settingConf";
     String SPLABEL_RECORD = "recordsConf";
     String SPLABEL_SETTING_BGM = "background_music";
-    String SPLABEL_SETTING_SOUNDEFFECT = "sound_effect";
+    String SPLABEL_SETTING_SOUND_EFFECT = "sound_effect";
     String SPLABEL_SETTING_OFFLINE_RECORD = "offline_record";
 
     @Override
@@ -49,7 +48,7 @@ public class SettingActivity extends AppCompatActivity {
         buttonSetAccount.setBackgroundColor(Color.TRANSPARENT);
         switchBGM.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_BGM,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
-        switchSoundEffect.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_SOUNDEFFECT,
+        switchSoundEffect.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_SOUND_EFFECT,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
         switchOfflineRecord.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_OFFLINE_RECORD,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
@@ -66,7 +65,7 @@ public class SettingActivity extends AppCompatActivity {
                 -> helper.writeProperty(SPLABEL_SETTING_BGM,isChecked));
 
         switchSoundEffect.setOnCheckedChangeListener((buttonView, isChecked)
-                -> helper.writeProperty(SPLABEL_SETTING_SOUNDEFFECT,isChecked));
+                -> helper.writeProperty(SPLABEL_SETTING_SOUND_EFFECT,isChecked));
 
         buttonBack.setOnClickListener(v -> finish());
 
@@ -74,14 +73,6 @@ public class SettingActivity extends AppCompatActivity {
             helper.clearProperty(SPLABEL_RECORD);
             Toast.makeText(this, "Records cleared!", Toast.LENGTH_SHORT).show();
         });
-
-
-        MusicServiceHelper musicServiceHelper = new MusicServiceHelper(this);
-        Button button = findViewById(R.id.button_test);
-        button.setOnClickListener(v->{
-            musicServiceHelper.startBackgroundMusic();
-        });
-
 
     }
 }
