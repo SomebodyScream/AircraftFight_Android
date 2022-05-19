@@ -11,6 +11,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.aircraftfight_android.R;
+import com.example.aircraftfight_android.helper.MusicServiceHelper;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 public class SettingActivity extends AppCompatActivity {
@@ -73,6 +74,14 @@ public class SettingActivity extends AppCompatActivity {
             helper.clearProperty(SPLABEL_RECORD);
             Toast.makeText(this, "Records cleared!", Toast.LENGTH_SHORT).show();
         });
+
+
+        MusicServiceHelper musicServiceHelper = new MusicServiceHelper(this);
+        Button button = findViewById(R.id.button_test);
+        button.setOnClickListener(v->{
+            musicServiceHelper.startBackgroundMusic();
+        });
+
 
     }
 }
