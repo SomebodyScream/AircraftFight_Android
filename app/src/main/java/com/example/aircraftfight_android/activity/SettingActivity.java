@@ -3,7 +3,9 @@ package com.example.aircraftfight_android.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
+import com.google.android.material.card.MaterialCardView;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -31,19 +34,17 @@ public class SettingActivity extends AppCompatActivity {
         helper = new SharedPreferenceHelper(this, SPLABEL_SETTING);
 
         //Instance declare
-        Button buttonClearRecord = findViewById(R.id.button_clear_record);
-        Button buttonSetAccount = findViewById(R.id.button_set_account);
+        ImageButton buttonClearRecord = findViewById(R.id.button_clear_record);
+        ImageButton buttonSetAccount = findViewById(R.id.button_set_account);
         ImageButton buttonBack = findViewById(R.id.button_back_setting);
-        ImageButton buttonOpenTutorial = findViewById(R.id.button_open_tutorial);
-        ImageButton buttonOpenGithub = findViewById(R.id.button_open_github);
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchBGM = findViewById(R.id.switch_bgm);
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchSoundEffect = findViewById(R.id.switch_soundEffect);
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchOfflineRecord = findViewById(R.id.switch_offline_record);
+        MaterialCardView cardGetStarted = findViewById(R.id.card_get_started);
+        MaterialCardView cardVisitGit = findViewById(R.id.card_visit_git);
 
         //UI config
         buttonBack.setBackgroundColor(Color.TRANSPARENT);
-        buttonOpenTutorial.setBackgroundColor(Color.TRANSPARENT);
-        buttonOpenGithub.setBackgroundColor(Color.TRANSPARENT);
         buttonClearRecord.setBackgroundColor(Color.TRANSPARENT);
         buttonSetAccount.setBackgroundColor(Color.TRANSPARENT);
         switchBGM.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_BGM,
@@ -54,6 +55,18 @@ public class SettingActivity extends AppCompatActivity {
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
 
         //Listener set
+        cardGetStarted.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://github.com/aucki6144/AircraftFight_Android/blob/main/README.md");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
+
+        cardVisitGit.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://github.com/aucki6144/AircraftFight_Android");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
+
         buttonSetAccount.setOnClickListener(v->{
             //TODO
         });

@@ -13,15 +13,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="This is settings activity , UI to be updated"
-                tools:ignore="HardcodedText" />
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:id="@+id/button_back_setting"
@@ -35,16 +27,6 @@
                 android:contentDescription="back button">
             </ImageButton>
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="end"
-                android:src="@drawable/title_setting"
-                android:scaleType="centerInside"
-                android:layout_marginVertical="5dp"
-                tools:ignore="HardcodedText"
-                android:contentDescription="setting title">
-            </ImageView>
 
         </FrameLayout>
 
@@ -57,242 +39,379 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|start"
-                    android:text="About this game"
-                    android:layout_marginStart="16dp"
-                    android:paddingTop="10dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    tools:ignore="HardcodedText">
-                </TextView>
+                    android:layout_height="38dp"
+                    android:src="@drawable/title_about_this_game"
+                    android:scaleType="fitStart"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="HardcodedText"
+                    android:contentDescription="setting title">
+                </ImageView>
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_get_started"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cardCornerRadius="5dp"
+                    android:layout_marginHorizontal="10dp">
+                    
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bar_background02">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#8F000000">
+
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="start|center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:src="@drawable/ic_tutorial">
+                            </ImageView>
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:src="@drawable/title_get_start"
+                                android:scaleType="fitEnd"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginEnd="20dp"
+                                tools:ignore="HardcodedText"
+                                android:contentDescription="setting title">
+                            </ImageView>
+
+                        </FrameLayout>
+                        
+                    </FrameLayout>
+                    
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_visit_git"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cardCornerRadius="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bar_background01">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#8F000000">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="start|center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:src="@drawable/ic_github">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:src="@drawable/title_visit_this_project"
+                                android:scaleType="fitEnd"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginEnd="20dp"
+                                tools:ignore="HardcodedText"
+                                android:contentDescription="setting title">
+                            </ImageView>
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+                    
+                </com.google.android.material.card.MaterialCardView>
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical|start"-->
+<!--                    android:text="About this game"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:paddingTop="10dp"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    tools:ignore="HardcodedText">-->
+<!--                </TextView>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="12dp"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/button_open_tutorial"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="180dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:src="@drawable/icon_tutorial"-->
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:contentDescription="tutorial image"-->
+<!--                        tools:ignore="HardcodedText">-->
+<!--                    </ImageButton>-->
+
+<!--                    <View-->
+<!--                        android:layout_width="5dp"-->
+<!--                        android:layout_height="15dp">-->
+<!--                    </View>-->
+
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/button_open_github"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="180dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:src="@drawable/icon_github"-->
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:contentDescription="github image"-->
+<!--                        tools:ignore="HardcodedText">-->
+<!--                    </ImageButton>-->
+
+<!--                </LinearLayout>-->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:src="@drawable/title_connection_setting"
+                    android:scaleType="fitStart"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="HardcodedText"
+                    android:contentDescription="setting title">
+                </ImageView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:orientation="horizontal">
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#8D322525"
+                    android:layout_marginHorizontal="10dp">
 
-                    <ImageButton
-                        android:id="@+id/button_open_tutorial"
-                        android:layout_width="0dp"
-                        android:layout_height="180dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/icon_tutorial"
-                        android:scaleType="centerCrop"
-                        android:contentDescription="tutorial image"
-                        tools:ignore="HardcodedText">
-                    </ImageButton>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="5dp"
-                        android:layout_height="15dp">
-                    </View>
 
-                    <ImageButton
-                        android:id="@+id/button_open_github"
-                        android:layout_width="0dp"
-                        android:layout_height="180dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/icon_github"
-                        android:scaleType="centerCrop"
-                        android:contentDescription="github image"
-                        tools:ignore="HardcodedText">
-                    </ImageButton>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                </LinearLayout>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="5dp">
 
-                <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|start"
+                                    android:text="Account Config"
+                                    android:layout_margin="10dp"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText">
+                                </TextView>
+
+                                <ImageButton
+                                    android:id="@+id/button_set_account"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="end|center_vertical"
+                                    android:src="@drawable/ic_confirm"
+                                    android:scaleType="centerInside"
+                                    android:layout_marginVertical="5dp"
+                                    tools:ignore="HardcodedText"
+                                    android:contentDescription="back button">
+                                </ImageButton>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="5dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|start"
+                                    android:text="Offline Record"
+                                    android:layout_margin="10dp"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText">
+                                </TextView>
+
+                                <Switch
+                                    android:id="@+id/switch_offline_record"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|end"
+                                    tools:ignore="UseSwitchCompatOrMaterialXml">
+                                </Switch>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|start"
-                    android:text="Connection Settings"
-                    android:layout_marginStart="16dp"
-                    android:paddingTop="10dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    tools:ignore="HardcodedText">
-                </TextView>
+                    android:layout_height="40dp"
+                    android:src="@drawable/title_local_setting"
+                    android:scaleType="fitStart"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="HardcodedText"
+                    android:contentDescription="setting title">
+                </ImageView>
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#8D322525"
+                    android:layout_marginHorizontal="10dp">
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/single_content_silver"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="10dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:text="Account Config"
-                            android:layout_margin="20dp"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            tools:ignore="HardcodedText">
-                        </TextView>
+                            android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/button_set_account"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            android:textSize="20sp"
-                            android:text="Confirm"
-                            tools:ignore="HardcodedText">
-                        </Button>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="5dp">
 
-                    </FrameLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|start"
+                                    android:text="Clear records"
+                                    android:layout_margin="10dp"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText">
+                                </TextView>
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/single_content_silver"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:padding="20dp">
+                                <ImageButton
+                                    android:id="@+id/button_clear_record"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="end|center_vertical"
+                                    android:src="@drawable/ic_confirm"
+                                    android:scaleType="centerInside"
+                                    android:layout_marginVertical="5dp"
+                                    tools:ignore="HardcodedText"
+                                    android:contentDescription="back button">
+                                </ImageButton>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:text="Offline Record"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            tools:ignore="HardcodedText">
-                        </TextView>
+                            </FrameLayout>
 
-                        <Switch
-                            android:id="@+id/switch_offline_record"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            tools:ignore="UseSwitchCompatOrMaterialXml">
-                        </Switch>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="5dp">
 
-                    </FrameLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|start"
+                                    android:text="Background Music"
+                                    android:layout_margin="10dp"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText">
+                                </TextView>
 
-                </LinearLayout>
+                                <Switch
+                                    android:id="@+id/switch_bgm"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|end"
+                                    tools:ignore="UseSwitchCompatOrMaterialXml">
+                                </Switch>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|start"
-                    android:text="Local Settings"
-                    android:layout_marginStart="16dp"
-                    android:paddingTop="10dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    tools:ignore="HardcodedText">
-                </TextView>
+                            </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="5dp">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/single_content_silver"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:padding="20dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|start"
+                                    android:text="Sound Effect"
+                                    android:layout_margin="10dp"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText">
+                                </TextView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:text="Background Music"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            tools:ignore="HardcodedText">
-                        </TextView>
+                                <Switch
+                                    android:id="@+id/switch_soundEffect"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical|end"
+                                    tools:ignore="UseSwitchCompatOrMaterialXml">
+                                </Switch>
 
-                        <Switch
-                            android:id="@+id/switch_bgm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            tools:ignore="UseSwitchCompatOrMaterialXml">
-                        </Switch>
+                            </FrameLayout>
 
-                    </FrameLayout>
+                        </LinearLayout>
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/single_content_silver"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:padding="20dp">
+                    </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:text="Sound Effect"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            tools:ignore="HardcodedText">
-                        </TextView>
-
-                        <Switch
-                            android:id="@+id/switch_soundEffect"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            tools:ignore="UseSwitchCompatOrMaterialXml">
-                        </Switch>
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@drawable/single_content_silver"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:text="Clear records"
-                            android:layout_margin="20dp"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            tools:ignore="HardcodedText">
-                        </TextView>
-
-                        <Button
-                            android:id="@+id/button_clear_record"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            android:textSize="20sp"
-                            tools:ignore="HardcodedText"
-                            android:text="Confirm">
-                        </Button>
-
-                    </FrameLayout>
-
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -315,6 +434,7 @@
                     android:textSize="15sp"
                     android:text="By Renns , aucki6144 . All rights reserved"
                     tools:ignore="HardcodedText" />
+
 
             </LinearLayout>
 

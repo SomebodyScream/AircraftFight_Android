@@ -16,6 +16,9 @@
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_setting.xml" value="0.36614583333333334" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/fragment_choice.xml" value="0.36614583333333334" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/fragment_difficulty.xml" value="0.36614583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1778115501519757" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1778115501519757" />
+        <entry key="app/src/main/res/layout/fragment_choice.xml" value="0.25" />
       </map>
     </option>
   </component>
