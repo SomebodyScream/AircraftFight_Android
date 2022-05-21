@@ -40,7 +40,8 @@ public class ChoiceFragment extends Fragment {
         ImageButton buttonMultiplayer = view.findViewById(R.id.button_multiplayer);
         ImageButton buttonSinglePlayer = view.findViewById(R.id.button_singleplayer);
         ImageButton buttonSetting = view.findViewById(R.id.button_setting);
-        ImageButton buttonStore = view.findViewById(R.id.button_store);
+        ImageButton buttonShopping = view.findViewById(R.id.button_store);
+        ImageButton buttonChange = view.findViewById(R.id.button_change_hero);
 
         ImageView imageView = view.findViewById(R.id.image_show_hero);
         Glide.with(this.getActivity()).load(R.drawable.gif_reimu).into(imageView);
@@ -64,6 +65,17 @@ public class ChoiceFragment extends Fragment {
             }
         });
 
+        buttonShopping.setOnClickListener(v -> {
+            if (activity!=null){
+                activity.startShoppingActivity();
+            }
+        });
+
+        buttonChange.setOnClickListener(v -> {
+            if (activity!=null){
+                activity.startChangeActivity();
+            }
+        });
         return view;
     }
 }

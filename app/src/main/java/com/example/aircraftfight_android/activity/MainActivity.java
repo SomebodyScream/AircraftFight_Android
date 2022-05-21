@@ -64,8 +64,21 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startChangeActivity(){
+        Intent intent = new Intent(this, ChangeAcvitity.class);
+        startActivity(intent);
+    }
+    public void startShoppingActivity(){
+        Intent intent = new Intent(this, ShoppingActivity.class);
+        startActivity(intent);
+    }
+
     public void replaceFragmentMulti(){
         replaceFragment(new ConnectFragment());
+    }
+
+    public void replaceFragmentChoice(){
+        replaceFragment(new ChoiceFragment());
     }
 
     public void startSettingActivity(){
@@ -84,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_activity_fragment_content,fragment);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
         transaction.commit();
     }
 
