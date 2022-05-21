@@ -3,6 +3,9 @@ package com.example.aircraftfight_android.game.aircraft;
 import com.example.aircraftfight_android.activity.MainActivity;
 import com.example.aircraftfight_android.game.aircraft.shoot_strategy.DirectShoot;
 import com.example.aircraftfight_android.game.application.ImageManager;
+import com.example.aircraftfight_android.game.bullet.BaseBullet;
+
+import java.util.List;
 
 /**
  * 英雄飞机，游戏玩家操控
@@ -23,6 +26,13 @@ public class HeroAircraft extends AbstractAircraft
 
     public static HeroAircraft getInstance(){
         return heroAircraft;
+    }
+
+    @Override
+    public List<BaseBullet> shoot()
+    {
+        MainActivity.musicHelper.playHeroBulletShoot();
+        return super.shoot();
     }
 
     @Override

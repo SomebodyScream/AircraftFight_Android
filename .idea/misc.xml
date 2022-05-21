@@ -13,10 +13,12 @@
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/drawable/img.xml" value="0.217" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_game.xml" value="0.17806484295845998" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_main.xml" value="0.27445652173913043" />
+        <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_record.xml" value="0.21829710144927536" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_setting.xml" value="0.36614583333333334" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/fragment_choice.xml" value="0.36614583333333334" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/fragment_difficulty.xml" value="0.36614583333333334" />
-        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.203125" />
+        <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/fragment_single_record.xml" value="0.36614583333333334" />
+        <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/item_single_record.xml" value="0.2545289855072464" />
       </map>
     </option>
   </component>

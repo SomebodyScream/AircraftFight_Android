@@ -35,7 +35,7 @@ public class ScatteringShoot implements ShootingStrategy
         BaseBullet bullet;
         for(int i=0; i<shootNum; i++)
         {
-            int speedX = i * 2 - shootNum + 1;
+            int speedX = (i * 2 - shootNum + 1) * 2;
             if(aircraftType.equals(HeroAircraft.class.getName())){
                 bullet = new HeroBullet(locationX, locationY, speedX, speedY, power);
             }

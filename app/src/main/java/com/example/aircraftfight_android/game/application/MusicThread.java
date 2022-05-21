@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Deprecated
 public class MusicThread extends Thread
 {
     private String filename;

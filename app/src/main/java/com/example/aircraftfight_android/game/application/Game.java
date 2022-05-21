@@ -23,6 +23,7 @@ import com.example.aircraftfight_android.game.bullet.BaseBullet;
 import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
+import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -92,14 +93,9 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
      * 周期（ms)
      * 指示子弹的发射、敌机的产生频率
      */
-    protected int enemyCycleDuration;
-    protected int shootCycleDurationn = 600;
-
-    /**
-     * 正常bgm 与 boss机出现时的bgm
-     */
-    protected MusicThread bgm;
-    protected MusicThread bossBgm;
+    protected int enemyAriseCycleDuration;
+    protected int heroShootCycleDuration = 450;
+    protected int enemyShootCycleDuration = 600;
 
     protected int backgroundSplitLength = 0;
 
@@ -114,7 +110,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     /**
      * 游戏刷新频率(ms)
      */
-    protected int timeInterval = 20;
+    protected int timeInterval = 18;
 
     /**
      * 计时器
@@ -143,20 +139,19 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        //销毁
     }
 
-    public Game(Context context)
+    public Game(Context context, GameOverCallback callback)
     {
         super(context);
 
         initView();
 
+        this.callback = callback;
         this.isMusicOn = true;
     }
 
@@ -165,21 +160,19 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
      */
     public final void action()
     {
-        bgm = new MusicThread("src/audios/bgm.wav", true, isMusicOn);
-        bgm.start();
+        MainActivity.musicHelper.startBackgroundMusic();
+
         // 定时任务：绘制、对象产生、碰撞判定、击毁及结束判定
         Runnable task = () -> {
             time += timeInterval;
 
             // 新建敌机（周期性执行控制频率）
-            if (timeCountAndNewCycleJudge(enemyCycleDuration)) {
+            if (timeCountAndNewCycleJudge(enemyAriseCycleDuration)) {
                 createEnemy();
             }
 
-            // 飞机射出子弹（周期性执行控制频率）
-            if(timeCountAndNewCycleJudge(shootCycleDurationn)){
-                shootAction();
-            }
+            // 各类飞机射击
+            shootAction();
 
             // 各类移动
             moveAction();
@@ -209,12 +202,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     protected boolean timeCountAndNewCycleJudge(int cycleDuration)
     {
-        if (time / cycleDuration > (time - timeInterval) / cycleDuration) {
-            // 跨越到新的周期
-            return true;
-        } else {
-            return false;
-        }
+        // 跨越到新的周期
+        return time / cycleDuration > (time - timeInterval) / cycleDuration;
     }
 
     //***********************
@@ -245,17 +234,39 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
+    /**
+     * 射击动作
+     */
     protected void shootAction()
     {
-        // 敌机射击
+        // 需要周期性执行以控制频率
+        if(timeCountAndNewCycleJudge(enemyShootCycleDuration)){
+            enemyShootAction();
+        }
+
+        if(timeCountAndNewCycleJudge(heroShootCycleDuration)){
+            heroShootAction();
+        }
+    }
+
+    /**
+     * 英雄机射击
+     */
+    protected void heroShootAction()
+    {
+        heroBullets.addAll(heroAircraft.shoot());
+    }
+
+    /**
+     * 敌机射击
+     */
+    protected void enemyShootAction()
+    {
         for(AbstractEnemy enemyAircraft : enemyAircrafts)
         {
             List<BaseBullet> bullets = enemyAircraft.shoot();
             enemyBullets.addAll(bullets);
         }
-
-        // 英雄射击
-        heroBullets.addAll(heroAircraft.shoot());
     }
 
     /**
@@ -285,6 +296,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         {
             if (enemyAircraft.crash(heroAircraft) || heroAircraft.crash(enemyAircraft))
             {
+                MainActivity.musicHelper.playEnemyCrash();
                 enemyAircraft.vanish();
                 heroAircraft.decreaseHp(Integer.MAX_VALUE);
             }
@@ -340,61 +352,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     }
 
     /**
-     * 创建boss机
-     * 抽象类中仅实现音效播放
-     * 子类必须重写实现boss创建
-     */
-    protected void createBoss()
-    {
-        isBossExist = true;
-        bgm.stopPlaying();
-        bossBgm = new MusicThread("src/audios/bgm_boss.wav", true, isMusicOn);
-        bossBgm.start();
-    }
-
-    /**
-     * 检测敌机被击毁
-     */
-    protected void enemyDoneAction()
-    {
-        boolean isCreateBoss = false;
-        for (AbstractEnemy enemyAircraft : enemyAircrafts)
-        {
-            if(enemyAircraft.getHp() <= 0)
-            {
-                int lastScore = score;
-
-                // 敌机掉落道具并加分
-                props.addAll(enemyAircraft.dropProp());
-                score += enemyAircraft.getScore();
-
-                // 若摧毁了boss机，则boss存在标志置为false
-                String enemyType = enemyAircraft.getClass().getName();
-                if(enemyType.equals(BossEnemy.class.getName()))
-                {
-                    isBossExist = false;
-                    bossBgm.stopPlaying();
-                    bgm = new MusicThread("src/audios/bgm.wav", true, isMusicOn);
-                    bgm.start();
-                }
-
-                // 分数超过阈值且不存在boss机，则创建boss机
-                boolean isScoreReachTreshold = ((score / bossScoreThreshold) -
-                        (lastScore / bossScoreThreshold) >= 1);
-                if(isScoreReachTreshold && !isBossExist)
-                {
-                    isCreateBoss = true;
-                    isBossExist = true;
-                }
-            }
-        }
-
-        if(isCreateBoss){
-            createBoss();
-        }
-    }
-
-    /**
      * 检测英雄机获得道具
      */
     protected void propCrashCheck()
@@ -425,6 +382,60 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     }
 
     /**
+     * 创建boss机
+     * 抽象类中仅实现音效播放
+     * 子类必须重写实现boss创建
+     */
+    protected void createBoss()
+    {
+        isBossExist = true;
+
+        MainActivity.musicHelper.pauseBackgroundMusic();
+        MainActivity.musicHelper.startBossMusic();
+    }
+
+    /**
+     * 检测敌机被击毁
+     */
+    protected void enemyDoneAction()
+    {
+        boolean isCreateBoss = false;
+        for (AbstractEnemy enemyAircraft : enemyAircrafts)
+        {
+            if(enemyAircraft.getHp() <= 0)
+            {
+                int lastScore = score;
+
+                // 敌机掉落道具并加分
+                props.addAll(enemyAircraft.dropProp());
+                score += enemyAircraft.getScore();
+
+                // 若摧毁了boss机，则boss存在标志置为false
+                String enemyType = enemyAircraft.getClass().getName();
+                if(enemyType.equals(BossEnemy.class.getName()))
+                {
+                    isBossExist = false;
+                    MainActivity.musicHelper.stopBossMusic();
+                    MainActivity.musicHelper.startBackgroundMusic();
+                }
+
+                // 分数超过阈值且不存在boss机，则创建boss机
+                boolean isScoreReachTreshold = ((score / bossScoreThreshold) -
+                        (lastScore / bossScoreThreshold) >= 1);
+                if(isScoreReachTreshold && !isBossExist)
+                {
+                    isCreateBoss = true;
+                    isBossExist = true;
+                }
+            }
+        }
+
+        if(isCreateBoss){
+            createBoss();
+        }
+    }
+
+    /**
      * 后处理：
      * 1. 删除无效的子弹
      * 2. 删除无效的敌机
@@ -449,12 +460,10 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             System.out.println("Game Over!");
 
             executorService.shutdown();
-            bgm.stopPlaying();
-            if(bossBgm != null){
-                bossBgm.stopPlaying();
-            }
+            MainActivity.musicHelper.pauseBackgroundMusic();
+            MainActivity.musicHelper.stopBossMusic();
 
-            new MusicThread("src/audios/game_over.wav", false, isMusicOn).start();
+            MainActivity.musicHelper.playGameOver();
             callback.run(score, mode);
         }
     }

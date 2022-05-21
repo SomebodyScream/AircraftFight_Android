@@ -12,16 +12,16 @@ public class HardGame extends Game
     private double curEnhancement = 1.0;
     private int bossCount = 0;
 
-    public HardGame(Context context)
+    public HardGame(Context context, GameOverCallback callback)
     {
-        super(context);
+        super(context, callback);
         backgroundImage = ImageManager.BACKGROUND_IMAGE_5;
         mode = Game.HARD;
 
         eliteEnemyAriseProb = 0.25;
         enemyMaxNumber = 6;
         bossScoreThreshold = 350;
-        enemyCycleDuration = 570;
+        enemyAriseCycleDuration = 570;
     }
 
     @Override
@@ -70,10 +70,10 @@ public class HardGame extends Game
                 System.out.printf(" 精英机概率: %.2f", eliteEnemyAriseProb);
             }
 
-            if(enemyCycleDuration > 400)
+            if(enemyAriseCycleDuration > 400)
             {
-                enemyCycleDuration -= 15;
-                System.out.print(" 敌机产生周期: " + enemyCycleDuration + "ms");
+                enemyAriseCycleDuration -= 15;
+                System.out.print(" 敌机产生周期: " + enemyAriseCycleDuration + "ms");
             }
 
             if(time % (timeInterval * 1500) == 0)

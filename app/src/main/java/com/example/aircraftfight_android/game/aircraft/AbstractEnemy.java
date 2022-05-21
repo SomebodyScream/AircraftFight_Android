@@ -1,6 +1,8 @@
 package com.example.aircraftfight_android.game.aircraft;
 
+import com.example.aircraftfight_android.activity.MainActivity;
 import com.example.aircraftfight_android.game.aircraft.shoot_strategy.ShootingStrategy;
+import com.example.aircraftfight_android.game.bullet.BaseBullet;
 import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
 import com.example.aircraftfight_android.game.prop.factory.BloodPropFactory;
@@ -43,6 +45,13 @@ public abstract class AbstractEnemy extends AbstractAircraft implements BombTarg
     public int getScore()
     {
         return score;
+    }
+
+    @Override
+    public List<BaseBullet> shoot()
+    {
+        MainActivity.musicHelper.playEnemyShoot();
+        return super.shoot();
     }
 
     /**

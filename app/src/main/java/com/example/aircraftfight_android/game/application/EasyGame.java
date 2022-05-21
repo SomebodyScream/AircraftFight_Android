@@ -9,16 +9,16 @@ import com.example.aircraftfight_android.game.aircraft.factory.MobEnemyFactory;
 
 public class EasyGame extends Game
 {
-    public EasyGame(Context context)
+    public EasyGame(Context context, GameOverCallback callback)
     {
-        super(context);
+        super(context, callback);
         backgroundImage = ImageManager.BACKGROUND_IMAGE;
         mode = Game.EASY;
 
         eliteEnemyAriseProb = 0.15;
         enemyMaxNumber = 4;
         bossScoreThreshold = 10000007;
-        enemyCycleDuration = 650;
+        enemyAriseCycleDuration = 650;
     }
 
     @Override

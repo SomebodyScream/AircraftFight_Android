@@ -14,6 +14,8 @@ public class SharedPreferenceHelper {
     public static int READ_MODE_INT = 2;
     public static int READ_MODE_FLOAT = 3;
 
+    public static String DEFAULT_VALUE = "114514";
+
     public SharedPreferenceHelper(Context context,String label){
         this.context = context;
         this.dataBaseLabel = label;
@@ -79,7 +81,7 @@ public class SharedPreferenceHelper {
         SharedPreferences sharedPreferences = context.getSharedPreferences(dataBaseLabel, Context.MODE_PRIVATE);
         switch (mode){
             case 0:{
-                return sharedPreferences.getString(label,"Default value");
+                return sharedPreferences.getString(label, DEFAULT_VALUE);
             }
             case 1:{
                 return sharedPreferences.getBoolean(label,false);

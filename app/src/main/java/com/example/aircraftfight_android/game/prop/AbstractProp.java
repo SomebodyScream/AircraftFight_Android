@@ -30,6 +30,7 @@ public abstract class AbstractProp extends AbstractFlyingObject
      */
     public void activate(boolean musicOn)
     {
-        new MusicThread("src/audios/get_supply.wav", false, musicOn).start();
+//        new MusicThread("src/audios/get_supply.wav", false, musicOn).start();
+//        MainActivity.musicHelper.
     }
 }

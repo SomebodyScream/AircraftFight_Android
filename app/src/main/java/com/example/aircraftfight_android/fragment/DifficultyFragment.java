@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.activity.MainActivity;
+import com.example.aircraftfight_android.game.application.Game;
 
 import java.util.zip.Inflater;
 
@@ -36,19 +37,19 @@ public class DifficultyFragment extends Fragment
 
         buttonEasy.setOnClickListener(v -> {
             if(activity != null){
-                activity.startGameActivity();
+                activity.startGameActivity(Game.EASY);
             }
         });
 
         buttonNormal.setOnClickListener(v -> {
             if(activity != null){
-                activity.startGameActivity();
+                activity.startGameActivity(Game.NORMAL);
             }
         });
 
         buttonHard.setOnClickListener(v -> {
             if(activity != null){
-                activity.startGameActivity();
+                activity.startGameActivity(Game.HARD);
             }
         });
 
