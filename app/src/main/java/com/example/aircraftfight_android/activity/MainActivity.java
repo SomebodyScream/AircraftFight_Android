@@ -22,6 +22,7 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
+import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.game.application.ImageManager;
 
 import java.lang.reflect.Field;
@@ -56,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new DifficultyFragment());
     }
 
-    public void startGameActivity(){
+    public void startGameActivity(String difficulty){
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("difficulty", difficulty);
+        startActivity(intent);
+    }
+
+    public void startRecordActivity(){
+        Intent intent = new Intent(this, RecordActivity.class);
         startActivity(intent);
     }
 

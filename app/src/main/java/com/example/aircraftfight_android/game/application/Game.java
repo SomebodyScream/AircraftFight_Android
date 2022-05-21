@@ -23,6 +23,7 @@ import com.example.aircraftfight_android.game.bullet.BaseBullet;
 import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
+import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -143,20 +144,19 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        //销毁
     }
 
-    public Game(Context context)
+    public Game(Context context, GameOverCallback callback)
     {
         super(context);
 
         initView();
 
+        this.callback = callback;
         this.isMusicOn = true;
     }
 
@@ -209,12 +209,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     protected boolean timeCountAndNewCycleJudge(int cycleDuration)
     {
-        if (time / cycleDuration > (time - timeInterval) / cycleDuration) {
-            // 跨越到新的周期
-            return true;
-        } else {
-            return false;
-        }
+        // 跨越到新的周期
+        return time / cycleDuration > (time - timeInterval) / cycleDuration;
     }
 
     //***********************
@@ -455,7 +451,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             }
 
             new MusicThread("src/audios/game_over.wav", false, isMusicOn).start();
-            callback.run(score, mode);
+            callback.run();
         }
     }
 

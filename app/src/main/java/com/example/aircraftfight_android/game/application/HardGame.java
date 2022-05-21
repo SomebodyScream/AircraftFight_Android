@@ -12,9 +12,9 @@ public class HardGame extends Game
     private double curEnhancement = 1.0;
     private int bossCount = 0;
 
-    public HardGame(Context context)
+    public HardGame(Context context, GameOverCallback callback)
     {
-        super(context);
+        super(context, callback);
         backgroundImage = ImageManager.BACKGROUND_IMAGE_5;
         mode = Game.HARD;
 

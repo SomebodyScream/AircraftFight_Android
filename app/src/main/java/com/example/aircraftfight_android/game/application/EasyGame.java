@@ -9,9 +9,9 @@ import com.example.aircraftfight_android.game.aircraft.factory.MobEnemyFactory;
 
 public class EasyGame extends Game
 {
-    public EasyGame(Context context)
+    public EasyGame(Context context, GameOverCallback callback)
     {
-        super(context);
+        super(context, callback);
         backgroundImage = ImageManager.BACKGROUND_IMAGE;
         mode = Game.EASY;
 
