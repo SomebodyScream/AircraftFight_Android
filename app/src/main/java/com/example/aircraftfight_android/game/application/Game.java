@@ -464,7 +464,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             MainActivity.musicHelper.stopBossMusic();
 
             MainActivity.musicHelper.playGameOver();
-            callback.run();
+            callback.run(score, mode);
         }
     }
 

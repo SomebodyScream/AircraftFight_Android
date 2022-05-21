@@ -31,11 +31,11 @@ public class GameActivity extends AppCompatActivity
 
         FrameLayout layout = (FrameLayout) getLayoutInflater().inflate(R.layout.activity_game, null);
 
-        GameOverCallback callback = () -> {
-//            SharedPreferenceHelper sphelper = new SharedPreferenceHelper(this, "SingleScore");
-//            sphelper.writeProperty("");
+        GameOverCallback callback = (score, difficulty) -> {
 
             Intent intent = new Intent(this, RecordActivity.class);
+            intent.putExtra("score", score);
+            intent.putExtra("difficulty", difficulty);
             startActivity(intent);
 
             this.finish();
