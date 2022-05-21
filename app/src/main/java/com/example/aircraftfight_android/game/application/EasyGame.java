@@ -18,7 +18,7 @@ public class EasyGame extends Game
         eliteEnemyAriseProb = 0.15;
         enemyMaxNumber = 4;
         bossScoreThreshold = 10000007;
-        enemyCycleDuration = 650;
+        enemyAriseCycleDuration = 650;
     }
 
     @Override

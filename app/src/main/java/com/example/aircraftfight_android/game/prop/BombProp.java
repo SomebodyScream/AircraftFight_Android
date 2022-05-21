@@ -1,5 +1,6 @@
 package com.example.aircraftfight_android.game.prop;
 
+import com.example.aircraftfight_android.activity.MainActivity;
 import com.example.aircraftfight_android.game.application.MusicThread;
 
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ public class BombProp extends AbstractProp
     @Override
     public void activate(boolean musicOn)
     {
-        new MusicThread("src/audios/bomb_explosion.wav", false, musicOn).start();
+        MainActivity.musicHelper.playHeroBomb();
         bombActivate();
     }
 

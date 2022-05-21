@@ -39,7 +39,7 @@ public class DirectShoot implements ShootingStrategy
         for(int i=0; i<shootNum; i++)
         {
             // 多个子弹横向分散
-            int locationX = x + (i * 2 - shootNum + 1) * 10;
+            int locationX = x + (i * 2 - shootNum + 1) * 13;
             if(aircraftType.equals(HeroAircraft.class.getName())){
                 bullet = new HeroBullet(locationX, locationY, speedX, speedY, power);
             }

@@ -1,17 +1,10 @@
 package com.example.aircraftfight_android.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -22,24 +15,21 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
-import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.game.application.ImageManager;
 import com.example.aircraftfight_android.helper.MusicServiceHelper;
-
-import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
 
     public static int HEIGHT;
     public static int WIDTH;
-    public static MusicServiceHelper helper;
+    public static MusicServiceHelper musicHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Music service start
-        helper = new MusicServiceHelper(this);
+        musicHelper = new MusicServiceHelper(this);
 
         // 获取屏幕尺寸
         Display display = getWindowManager().getDefaultDisplay();

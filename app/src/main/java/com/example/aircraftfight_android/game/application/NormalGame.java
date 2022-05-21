@@ -20,7 +20,7 @@ public class NormalGame extends Game
         eliteEnemyAriseProb = 0.2;
         enemyMaxNumber = 5;
         bossScoreThreshold = 450;
-        enemyCycleDuration = 600;
+        enemyAriseCycleDuration = 600;
     }
 
     @Override
@@ -68,10 +68,10 @@ public class NormalGame extends Game
                 System.out.printf(" 精英机概率: %.2f", eliteEnemyAriseProb);
             }
 
-            if(enemyCycleDuration > 400)
+            if(enemyAriseCycleDuration > 400)
             {
-                enemyCycleDuration -= 12;
-                System.out.print(" 敌机产生周期: " + enemyCycleDuration + "ms");
+                enemyAriseCycleDuration -= 12;
+                System.out.print(" 敌机产生周期: " + enemyAriseCycleDuration + "ms");
             }
 
             if(time % (timeInterval * 1500) == 0)
