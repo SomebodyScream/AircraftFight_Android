@@ -1,6 +1,7 @@
 package com.example.aircraftfight_android.fragment;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +34,9 @@ public class DifficultyFragment extends Fragment
         ImageButton buttonEasy = (ImageButton) view.findViewById(R.id.button_easy);
         ImageButton buttonNormal = (ImageButton) view.findViewById(R.id.button_normal);
         ImageButton buttonHard = (ImageButton) view.findViewById(R.id.button_hard);
+        ImageButton buttonBack = (ImageButton) view.findViewById(R.id.button_back_choice);
+
+        buttonBack.setBackgroundColor(Color.TRANSPARENT);
 
         buttonEasy.setOnClickListener(v -> {
             if(activity != null){
@@ -49,6 +53,12 @@ public class DifficultyFragment extends Fragment
         buttonHard.setOnClickListener(v -> {
             if(activity != null){
                 activity.startGameActivity();
+            }
+        });
+
+        buttonBack.setOnClickListener(v -> {
+            if (activity != null){
+                activity.replaceFragmentChoice();
             }
         });
 

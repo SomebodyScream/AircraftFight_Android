@@ -1,57 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/main_background">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_back_choice"
+            android:layout_width="130dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_back"
+            android:scaleType="centerInside"
+            android:layout_marginVertical="5dp"
+            tools:ignore="HardcodedText"
+            android:contentDescription="back button">
+        </ImageButton>
+
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginHorizontal="70dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:src="@drawable/difficulty_title">
-        </ImageView>
+        android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/button_easy"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/difficulty_button_easy">
-            </ImageButton>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:src="@drawable/title_difficulty_choice"
+                android:scaleType="fitStart"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="20dp"
+                tools:ignore="HardcodedText"
+                android:contentDescription="setting title">
+            </ImageView>
 
-            <ImageButton
-                android:id="@+id/button_normal"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/difficulty_button_normal">
-            </ImageButton>
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:cardCornerRadius="5dp"
+                app:cardBackgroundColor="#8D322525"
+                android:layout_marginHorizontal="10dp">
 
-            <ImageButton
-                android:id="@+id/button_hard"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <ImageButton
+                            android:id="@+id/button_easy"
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="start"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/difficulty_button_easy">
+                        </ImageButton>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <ImageButton
+                            android:id="@+id/button_normal"
+                            android:layout_width="250dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="start"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/difficulty_button_normal">
+                        </ImageButton>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <ImageButton
+                            android:id="@+id/button_hard"
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="start"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/difficulty_button_hard">
+                        </ImageButton>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:src="@drawable/title_choose_girl"
+                android:scaleType="fitStart"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="20dp"
+                tools:ignore="HardcodedText"
+                android:contentDescription="setting title">
+            </ImageView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/difficulty_button_hard">
-            </ImageButton>
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:cardCornerRadius="5dp"
+                app:cardBackgroundColor="#8D322525"
+                android:layout_marginHorizontal="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/image_choose_hero_cg"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                    </ImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image_choose_hero"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp">
+                        </ImageView>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <ImageButton
+                                android:id="@+id/button_change_hero_1"
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="end"
+                                android:scaleType="fitCenter"
+                                android:background="@drawable/single_button_5">
+                            </ImageButton>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/title_choose_talis"
+                android:scaleType="fitStart"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="20dp"
+                tools:ignore="HardcodedText"
+                android:contentDescription="setting title">
+            </ImageView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:cardCornerRadius="5dp"
+                app:cardBackgroundColor="#8D322525"
+                android:layout_marginHorizontal="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_hero_info"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image_choose_talis"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp">
+                        </ImageView>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <ImageButton
+                                android:id="@+id/button_change_talis"
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="end"
+                                android:scaleType="fitCenter"
+                                android:background="@drawable/single_button_5">
+                            </ImageButton>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
