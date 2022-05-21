@@ -539,15 +539,15 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     protected void paintScoreAndLife(Canvas canvas)
     {
-        float x = 10;
+        float x = 50;
         float y = 150;
 
         Paint paint = new Paint();
-        paint.setTextSize(50);
-        paint.setColor(16711680);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setTextSize(100);
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.FILL);
 
-        canvas.drawText("Score" + score, x, y, paint);
-        canvas.drawText("Life" + heroAircraft.getHp(), x, y + 20, paint);
+        canvas.drawText("Score: " + score, x, y, paint);
+        canvas.drawText("Life: " + heroAircraft.getHp(), x, y + 100, paint);
     }
 }
