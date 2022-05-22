@@ -19,11 +19,11 @@ import com.google.android.material.card.MaterialCardView;
 public class SettingActivity extends AppCompatActivity {
 
     private SharedPreferenceHelper helper;
-    String SPLABEL_SETTING = "settingConf";
-    String SPLABEL_RECORD = "recordsConf";
-    String SPLABEL_SETTING_BGM = "background_music";
-    String SPLABEL_SETTING_SOUND_EFFECT = "sound_effect";
-    String SPLABEL_SETTING_OFFLINE_RECORD = "offline_record";
+    static String SPLABEL_SETTING = "settingConf";
+    static String SPLABEL_RECORD = "recordsConf";
+    static String SPLABEL_SETTING_BGM = "background_music";
+    static String SPLABEL_SETTING_SOUND_EFFECT = "sound_effect";
+    static String SPLABEL_SETTING_OFFLINE_RECORD = "offline_record";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +74,15 @@ public class SettingActivity extends AppCompatActivity {
         switchOfflineRecord.setOnCheckedChangeListener((buttonView, isChecked)
                 -> helper.writeProperty(SPLABEL_SETTING_BGM,isChecked));
 
-        switchBGM.setOnCheckedChangeListener((buttonView, isChecked)
-                -> helper.writeProperty(SPLABEL_SETTING_BGM,isChecked));
+        switchBGM.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            MainActivity.musicHelper.setBgmOn(isChecked);
+            helper.writeProperty(SPLABEL_SETTING_BGM, isChecked);
+        });
 
-        switchSoundEffect.setOnCheckedChangeListener((buttonView, isChecked)
-                -> helper.writeProperty(SPLABEL_SETTING_SOUND_EFFECT,isChecked));
+        switchSoundEffect.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            MainActivity.musicHelper.setSoundEffectOn(isChecked);
+            helper.writeProperty(SPLABEL_SETTING_SOUND_EFFECT, isChecked);
+        });
 
         buttonBack.setOnClickListener(v -> finish());
 

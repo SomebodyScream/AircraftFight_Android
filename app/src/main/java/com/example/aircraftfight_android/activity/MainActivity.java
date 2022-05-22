@@ -17,6 +17,7 @@ import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
 import com.example.aircraftfight_android.game.application.ImageManager;
 import com.example.aircraftfight_android.helper.MusicServiceHelper;
+import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Music service start
         musicHelper = new MusicServiceHelper(this);
+
+        SharedPreferenceHelper helper = new SharedPreferenceHelper(this, SettingActivity.SPLABEL_SETTING);
+        musicHelper.setBgmOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_BGM, SharedPreferenceHelper.READ_MODE_BOOLEAN));
+        musicHelper.setSoundEffectOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_SOUND_EFFECT, SharedPreferenceHelper.READ_MODE_BOOLEAN));
 
         // 获取屏幕尺寸
         Display display = getWindowManager().getDefaultDisplay();

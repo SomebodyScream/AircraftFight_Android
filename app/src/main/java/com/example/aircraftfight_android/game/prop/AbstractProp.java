@@ -26,11 +26,6 @@ public abstract class AbstractProp extends AbstractFlyingObject
 
     /**
      * 道具生效
-     * @param musicOn 生效时是否开启音效
      */
-    public void activate(boolean musicOn)
-    {
-//        new MusicThread("src/audios/get_supply.wav", false, musicOn).start();
-//        MainActivity.musicHelper.
-    }
+    public abstract void activate();
 }
