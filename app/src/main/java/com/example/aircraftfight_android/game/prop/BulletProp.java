@@ -21,9 +21,8 @@ public class BulletProp extends AbstractProp
     }
 
     @Override
-    public void activate(boolean musicOn)
+    public void activate()
     {
-        super.activate(musicOn);
         Runnable activate = () -> {
             threadLock.lock();
             try

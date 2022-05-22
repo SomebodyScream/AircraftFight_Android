@@ -23,9 +23,8 @@ public class BloodProp extends AbstractProp
     }
 
     @Override
-    public void activate(boolean musicOn)
+    public void activate()
     {
-        super.activate(musicOn);
         HeroAircraft heroAircraft = HeroAircraft.getInstance();
         heroAircraft.increaseHp(healingAmount);
     }

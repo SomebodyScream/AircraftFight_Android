@@ -29,14 +29,16 @@ public class MusicService extends Service {
     private static final int SOUND_POOL_MAX_STREAMS = 50;
 
     public class MusicBinder extends Binder {
-        public void startBackgroundMusic(){
+        public void startBackgroundMusic(boolean isPlay){
+            if(!isPlay) return;
             playBGM(R.raw.bgm01_eastern_night);
         }
         public void stopBackgroundMusic(){
             stopBgm();
         }
 
-        public void startBossMusic(){
+        public void startBossMusic(boolean isPlay){
+            if(!isPlay) return;
             playBGM(R.raw.bgm02_night_bird);
         }
 
@@ -44,7 +46,8 @@ public class MusicService extends Service {
             stopBgm();
         }
 
-        public void playSoundEffect(int id) {
+        public void playSoundEffect(int id, boolean isPlay) {
+            if(!isPlay) return;
             soundPool.play(soundEffectHash.get(id), 1, 1, 0, 0, 1);
         }
     }

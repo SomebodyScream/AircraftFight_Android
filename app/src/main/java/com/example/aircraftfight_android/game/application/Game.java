@@ -49,11 +49,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     protected Bitmap backgroundImage;
 
     /**
-     * 音效是否开启
-     */
-    protected boolean isMusicOn;
-
-    /**
      * 游戏模式，EASY、NORMAL、HARD之一
      */
     protected String mode;
@@ -151,8 +146,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
         initView();
 
+        heroAircraft.initHeroAircraft();
         this.callback = callback;
-        this.isMusicOn = true;
     }
 
     /**
@@ -298,7 +293,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             {
                 MainActivity.musicHelper.playEnemyCrash();
                 enemyAircraft.vanish();
-                heroAircraft.decreaseHp(Integer.MAX_VALUE);
+                heroAircraft.decreaseHp(heroAircraft.getHp());
             }
         }
     }
@@ -341,8 +336,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
                 // 敌机撞击到英雄机子弹
                 if (enemyAircraft.crash(bullet))
                 {
-                    new MusicThread("src/audios/bullet_hit.wav", false, isMusicOn).start();
-
                     // 敌机损失一定生命值
                     enemyAircraft.decreaseHp(bullet.getPower());
                     bullet.vanish();
@@ -375,7 +368,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
                     }
                 }
 
-                prop.activate(isMusicOn);
+                prop.activate();
                 prop.vanish();
             }
         }
@@ -456,9 +449,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     {
         if (heroAircraft.getHp() <= 0)
         {
-            // 游戏结束
-            System.out.println("Game Over!");
-
             executorService.shutdown();
             MainActivity.musicHelper.pauseBackgroundMusic();
             MainActivity.musicHelper.stopBossMusic();

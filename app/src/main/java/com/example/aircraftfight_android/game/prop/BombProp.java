@@ -20,7 +20,7 @@ public class BombProp extends AbstractProp
     }
 
     @Override
-    public void activate(boolean musicOn)
+    public void activate()
     {
         MainActivity.musicHelper.playHeroBomb();
         bombActivate();

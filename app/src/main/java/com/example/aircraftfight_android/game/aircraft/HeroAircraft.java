@@ -28,6 +28,13 @@ public class HeroAircraft extends AbstractAircraft
         return heroAircraft;
     }
 
+    public void initHeroAircraft()
+    {
+        heroAircraft.setLocation(MainActivity.WIDTH / 2,
+                MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight());
+        heroAircraft.increaseHp(maxHp);
+    }
+
     @Override
     public List<BaseBullet> shoot()
     {
