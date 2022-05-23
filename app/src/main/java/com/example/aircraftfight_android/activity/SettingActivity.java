@@ -72,7 +72,7 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         switchOfflineRecord.setOnCheckedChangeListener((buttonView, isChecked)
-                -> helper.writeProperty(SPLABEL_SETTING_BGM,isChecked));
+                -> helper.writeProperty(SPLABEL_SETTING_OFFLINE_RECORD,isChecked));
 
         switchBGM.setOnCheckedChangeListener((buttonView, isChecked) -> {
             MainActivity.musicHelper.setBgmOn(isChecked);
