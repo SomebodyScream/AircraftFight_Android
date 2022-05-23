@@ -19,6 +19,7 @@ public class SharedPreferenceHelper {
     public SharedPreferenceHelper(Context context,String label){
         this.context = context;
         this.dataBaseLabel = label;
+//        spInitial();
     }
 
     /**
@@ -104,5 +105,11 @@ public class SharedPreferenceHelper {
         editor = context.getSharedPreferences(clearDatabase,Context.MODE_PRIVATE).edit();
         editor.clear().apply();
     }
+
+//    private void spInitial(){
+//        editor = context.getSharedPreferences(dataBaseLabel,Context.MODE_PRIVATE).edit();
+//        editor.putString(label,content);
+//        editor.apply();
+//    }
 
 }
