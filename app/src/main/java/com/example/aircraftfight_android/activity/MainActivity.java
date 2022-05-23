@@ -2,8 +2,11 @@ package com.example.aircraftfight_android.activity;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -21,7 +24,7 @@ import com.example.aircraftfight_android.game.application.ImageManager;
 import com.example.aircraftfight_android.helper.MusicServiceHelper;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     public static int HEIGHT;
     public static int WIDTH;
@@ -38,13 +41,19 @@ public class MainActivity extends AppCompatActivity {
         musicHelper.setBgmOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_BGM, SharedPreferenceHelper.READ_MODE_BOOLEAN));
         musicHelper.setSoundEffectOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_SOUND_EFFECT, SharedPreferenceHelper.READ_MODE_BOOLEAN));
 
-        // 获取屏幕尺寸
-        Display display = getWindowManager().getDefaultDisplay();
+        // 获取屏幕尺寸(包含状态栏，导航栏)
+        Point outSize = new Point();
+        getWindowManager().getDefaultDisplay().getRealSize(outSize);
+        WIDTH = outSize.x;
+        HEIGHT = outSize.y;
 
-        Point point = new Point();
-        display.getSize(point);
-        WIDTH = point.x;
-        HEIGHT = point.y;
+        // 获取屏幕尺寸(不包含状态栏，导航栏)
+//        Display display = getWindowManager().getDefaultDisplay();
+//
+//        Point point = new Point();
+//        display.getSize(point);
+//        WIDTH = point.x;
+//        HEIGHT = point.y;
 
         // 初始化ImageManager
         ImageManager.initial(getResources());
