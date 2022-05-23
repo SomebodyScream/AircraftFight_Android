@@ -23,6 +23,7 @@ import com.example.aircraftfight_android.game.bullet.BaseBullet;
 import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
+import com.example.aircraftfight_android.helper.DrawHeroHelper;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
@@ -116,6 +117,9 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     private Canvas canvas;
     private boolean isDrawing;
 
+    private DrawHeroHelper drawHeroHelper;
+    private Context context;
+
     private void initView()
     {
         surfaceHolder = getHolder();
@@ -143,7 +147,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     public Game(Context context, GameOverCallback callback)
     {
         super(context);
-
+        this.context = context;
         initView();
 
         heroAircraft.initHeroAircraft();
@@ -483,6 +487,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     protected void paint()
     {
         canvas = surfaceHolder.lockCanvas();
+        this.drawHeroHelper = new DrawHeroHelper(timeInterval,canvas,context);
 
         // 背景循环移动
         Rect srcBottom = new Rect(0, 0, backgroundImage.getWidth(), backgroundImage.getHeight() - backgroundSplitLength);
@@ -505,8 +510,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         // 绘制道具
         paintImageWithPositionRevised(canvas, props);
 
-        canvas.drawBitmap(ImageManager.HERO_IMAGE, heroAircraft.getLocationX() - ImageManager.HERO_IMAGE.getWidth() / 2,
-                heroAircraft.getLocationY() - ImageManager.HERO_IMAGE.getHeight() / 2, null);
+        // 绘制英雄
+        drawHeroHelper.drawHero(time,heroAircraft.getLocationX(),heroAircraft.getLocationY());
 
         //绘制得分和生命值
         paintScoreAndLife(canvas);
