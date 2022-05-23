@@ -117,4 +117,11 @@ public class GameActivity extends BaseActivity
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void onDestroy() {
+        MainActivity.musicHelper.pauseBackgroundMusic();
+        MainActivity.musicHelper.stopBossMusic();
+        super.onDestroy();
+    }
 }
