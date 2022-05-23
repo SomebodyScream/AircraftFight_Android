@@ -48,6 +48,11 @@ public class ImageManager {
     public static Bitmap BULLET_PROP_IMAGE;
     public static Bitmap BOMB_PROP_IMAGE;
     public static Bitmap BLOOD_PROP_IMAGE;
+    public static Bitmap REIMU_1;
+    public static Bitmap REIMU_2;
+    public static Bitmap REIMU_3;
+    public static Bitmap REIMU_4;
+    public static Bitmap REIMU_5;
 
     public static void initial(Resources resources)
     {
@@ -67,6 +72,11 @@ public class ImageManager {
         BULLET_PROP_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.prop_bullet);
         BOMB_PROP_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.prop_bomb);
         BLOOD_PROP_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.prop_blood);
+        REIMU_1 = BitmapFactory.decodeResource(resources, R.drawable.reimu_01);
+        REIMU_2 = BitmapFactory.decodeResource(resources, R.drawable.reimu_02);
+        REIMU_3 = BitmapFactory.decodeResource(resources, R.drawable.reimu_03);
+        REIMU_4 = BitmapFactory.decodeResource(resources, R.drawable.reimu_04);
+        REIMU_5 = BitmapFactory.decodeResource(resources, R.drawable.reimu_05);
 
         CLASSNAME_IMAGE_MAP.put(HeroAircraft.class.getName(), HERO_IMAGE);
         CLASSNAME_IMAGE_MAP.put(MobEnemy.class.getName(), MOB_ENEMY_IMAGE);

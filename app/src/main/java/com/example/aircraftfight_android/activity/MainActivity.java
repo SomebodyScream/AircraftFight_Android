@@ -5,12 +5,14 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new ChoiceFragment();
         initialFragment(fragment);
 
+        ImageView imageView = findViewById(R.id.main_activity_background);
+        Glide.with(this).load(R.drawable.main_background_dynamic).into(imageView);
     }
 
     public void replaceFragmentDifficulty(){

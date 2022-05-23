@@ -5,10 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,10 +67,14 @@ public class RecordActivity extends AppCompatActivity {
     private void initRecordDetailPage()
     {
         mRecordDetail = (LinearLayout) findViewById(R.id.draw_layout_record);
-        hideRecordDetail();
+        mRecordDetail.setVisibility(View.GONE);
+        //        hideRecordDetail();
 
         Button backButton = findViewById(R.id.button_draw_back);
         Button deleteButton = findViewById(R.id.button_draw_delete);
+        ImageButton closeButton = findViewById(R.id.button_back_record);
+
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
 
         backButton.setOnClickListener(v -> {
             curSelectedPosition = -1;
@@ -81,7 +87,12 @@ public class RecordActivity extends AppCompatActivity {
                 saveRecordsToLocal();
                 curSelectedPosition = -1;
                 hideRecordDetail();
+                initRecyclerView();//Need to refresh list here!
             }
+        });
+
+        closeButton.setOnClickListener(v -> {
+            finish();
         });
     }
 
