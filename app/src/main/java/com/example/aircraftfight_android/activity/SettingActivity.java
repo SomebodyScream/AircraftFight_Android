@@ -16,7 +16,7 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 import com.google.android.material.card.MaterialCardView;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends BaseActivity {
 
     private SharedPreferenceHelper helper;
     static String SPLABEL_SETTING = "settingConf";

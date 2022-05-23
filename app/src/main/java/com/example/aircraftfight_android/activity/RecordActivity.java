@@ -27,13 +27,15 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class RecordActivity extends AppCompatActivity {
+public class RecordActivity extends BaseActivity {
 
     private LinkedList<SingleRecord> singleRecords= new LinkedList<>();
     private LinkedList<MultiRecord> multiRecords= new LinkedList<>();
 
     private SharedPreferenceHelper singleSpHelper;
     private SharedPreferenceHelper multiSpHelper;
+
+    SingleRecordAdapter singleAdapter;
 
     private LinearLayout mRecordDetail;
     private int curSelectedPosition = -1;
@@ -87,7 +89,7 @@ public class RecordActivity extends AppCompatActivity {
                 saveRecordsToLocal();
                 curSelectedPosition = -1;
                 hideRecordDetail();
-                initRecyclerView();//Need to refresh list here!
+                refreshRecyclerView();//Need to refresh list here!
             }
         });
 
@@ -119,8 +121,14 @@ public class RecordActivity extends AppCompatActivity {
             }
         };
 
-        SingleRecordAdapter adapter = new SingleRecordAdapter(singleRecords, callBack);
-        recyclerView.setAdapter(adapter);
+        singleAdapter = new SingleRecordAdapter(singleRecords, callBack);
+        refreshRecyclerView();
+    }
+
+    private void refreshRecyclerView()
+    {
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_record);
+        recyclerView.setAdapter(singleAdapter);
     }
 
     private void initSingleRecords(int score)

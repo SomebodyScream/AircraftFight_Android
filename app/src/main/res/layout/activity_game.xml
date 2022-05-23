@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".activity.GameActivity">
 
+    <FrameLayout
+        android:id="@+id/game_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/button_pause"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="right"
+        android:src="@drawable/button_pause"
+        android:scaleType="centerInside"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        tools:ignore="HardcodedText"
+        android:contentDescription="game pause button">
+    </ImageButton>
+
+    <FrameLayout
+        android:id="@+id/gray_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8D322525">
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/button_resume"
+            android:layout_width="165dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/button_resume"
+            android:scaleType="centerInside"
+            android:layout_marginTop="200dp"
+            tools:ignore="HardcodedText"
+            android:contentDescription="game resume button">
+        </ImageButton>
+    </LinearLayout>
+
 </FrameLayout>

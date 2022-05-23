@@ -33,6 +33,9 @@ public class HeroAircraft extends AbstractAircraft
         heroAircraft.setLocation(MainActivity.WIDTH / 2,
                 MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight());
         heroAircraft.increaseHp(maxHp);
+        heroAircraft.setShootNum(1);
+        heroAircraft.setShootStrategy(new DirectShoot());
+        heroAircraft.isValid = true;
     }
 
     @Override

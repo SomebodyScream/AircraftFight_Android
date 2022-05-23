@@ -34,7 +34,6 @@ import java.util.concurrent.*;
 
 /**
  * 游戏主面板，游戏启动
- *
  * @author hitsz
  */
 public abstract class Game extends SurfaceView implements SurfaceHolder.Callback{
@@ -43,6 +42,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     public final static String HARD = "HARD";
 
     protected GameOverCallback callback;
+
+    protected boolean isPause = false;
 
     /**
      * 游戏背景
@@ -115,7 +116,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
 
     private SurfaceHolder surfaceHolder;
     private Canvas canvas;
-    private boolean isDrawing;
 
     private DrawHeroHelper drawHeroHelper;
     private Context context;
@@ -154,15 +154,30 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         this.callback = callback;
     }
 
+    public void pauseGame(){
+        isPause = true;
+    }
+
+    public void resumeGame(){
+        isPause = false;
+    }
+
+    public boolean isPause() {
+        return isPause;
+    }
+
     /**
      * 游戏启动入口，执行游戏逻辑
      */
     public final void action()
     {
+        backgroundImage = Bitmap.createScaledBitmap(backgroundImage, MainActivity.WIDTH, MainActivity.HEIGHT, false);
         MainActivity.musicHelper.startBackgroundMusic();
 
         // 定时任务：绘制、对象产生、碰撞判定、击毁及结束判定
         Runnable task = () -> {
+            if(isPause) return;
+
             time += timeInterval;
 
             // 新建敌机（周期性执行控制频率）
@@ -490,6 +505,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         this.drawHeroHelper = new DrawHeroHelper(timeInterval,canvas,context);
 
         // 背景循环移动
+//        backgroundImage = Bitmap.createScaledBitmap(backgroundImage, canvas.getWidth(), canvas.getHeight(), false);
+
         Rect srcBottom = new Rect(0, 0, backgroundImage.getWidth(), backgroundImage.getHeight() - backgroundSplitLength);
         Rect dstBottom = new Rect(0, backgroundSplitLength, backgroundImage.getWidth(), backgroundImage.getHeight());
         canvas.drawBitmap(backgroundImage, srcBottom, dstBottom,null);
