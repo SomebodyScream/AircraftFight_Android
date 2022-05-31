@@ -11,7 +11,7 @@ public class NormalGame extends Game
 {
     private double curEnhancement = 1.0;
 
-    public NormalGame(Context context, GameOverCallback callback)
+    public NormalGame(Context context, GameCallback callback)
     {
         super(context, callback);
         backgroundImage = ImageManager.BACKGROUND_IMAGE_3;

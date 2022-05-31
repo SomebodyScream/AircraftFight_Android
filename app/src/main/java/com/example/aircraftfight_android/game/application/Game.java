@@ -1,16 +1,12 @@
 package com.example.aircraftfight_android.game.application;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -24,7 +20,6 @@ import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
 import com.example.aircraftfight_android.helper.DrawHeroHelper;
-import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -41,7 +36,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     public final static String NORMAL = "NORMAL";
     public final static String HARD = "HARD";
 
-    protected GameOverCallback callback;
+    protected GameCallback callback;
 
     protected boolean isPause = false;
 
@@ -144,7 +139,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder holder) {
     }
 
-    public Game(Context context, GameOverCallback callback)
+    public Game(Context context, GameCallback callback)
     {
         super(context);
         this.context = context;
@@ -200,8 +195,12 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             // 后处理
             postProcessAction();
 
-            //每个时刻重绘界面
+            // 每个时刻重绘界面
             paint();
+
+            // 实时回传分数和生命值
+            callback.onScoreChanged(score);
+            callback.onLifeChanged(heroAircraft.getHp());
 
             // 游戏结束检查
             gameOverCheck();
@@ -473,7 +472,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             MainActivity.musicHelper.stopBossMusic();
 
             MainActivity.musicHelper.playGameOver();
-            callback.run(score, mode);
+            callback.onGameOver(score, mode);
         }
     }
 
@@ -531,7 +530,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         drawHeroHelper.drawHero(time,heroAircraft.getLocationX(),heroAircraft.getLocationY());
 
         //绘制得分和生命值
-        paintScoreAndLife(canvas);
+//        paintScoreAndLife(canvas);
 
         surfaceHolder.unlockCanvasAndPost(canvas);
     }
@@ -549,6 +548,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
+    @Deprecated
     protected void paintScoreAndLife(Canvas canvas)
     {
         float x = 50;

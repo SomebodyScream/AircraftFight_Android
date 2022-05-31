@@ -12,6 +12,27 @@
         android:layout_height="match_parent">
     </FrameLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start">
+        <TextView
+            android:id="@+id/life_view"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="#ff0000">
+        </TextView>
+        <TextView
+            android:id="@+id/score_view"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="#ff0000">
+        </TextView>
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/button_pause"
         android:layout_width="?attr/actionBarSize"
