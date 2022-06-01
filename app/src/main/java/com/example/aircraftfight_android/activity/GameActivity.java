@@ -1,33 +1,29 @@
 package com.example.aircraftfight_android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.game.application.EasyGame;
 import com.example.aircraftfight_android.game.application.Game;
-import com.example.aircraftfight_android.game.application.GameOverCallback;
+import com.example.aircraftfight_android.game.application.GameCallback;
 import com.example.aircraftfight_android.game.application.HardGame;
 import com.example.aircraftfight_android.game.application.NormalGame;
-import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 
-public class GameActivity extends BaseActivity
+public class GameActivity extends BaseActivity implements GameCallback
 {
     private Game game;
+    private TextView scoreView;
+    private TextView lifeView;
     private ImageButton buttonPause;
     private ImageButton buttonResume;
     private FrameLayout grayMask;
@@ -37,6 +33,9 @@ public class GameActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        scoreView = findViewById(R.id.score_view);
+        lifeView = findViewById(R.id.life_view);
 
         buttonPause = findViewById(R.id.button_pause);
         buttonResume = findViewById(R.id.button_resume);
@@ -77,25 +76,16 @@ public class GameActivity extends BaseActivity
     {
         FrameLayout container = findViewById(R.id.game_container);
 
-        GameOverCallback callback = (score, difficulty) -> {
-            Intent intent = new Intent(this, RecordActivity.class);
-            intent.putExtra("score", score);
-            intent.putExtra("difficulty", difficulty);
-            startActivity(intent);
-
-            this.finish();
-        };
-
         String difficulty = getIntent().getStringExtra("difficulty");
 
         if(difficulty.equals(Game.EASY)){
-            game = new EasyGame(this, callback);
+            game = new EasyGame(this, this);
         }
         else if(difficulty.equals(Game.NORMAL)){
-            game = new NormalGame(this, callback);
+            game = new NormalGame(this, this);
         }
         else{
-            game = new HardGame(this, callback);
+            game = new HardGame(this, this);
         }
 
         game.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -123,5 +113,25 @@ public class GameActivity extends BaseActivity
         MainActivity.musicHelper.pauseBackgroundMusic();
         MainActivity.musicHelper.stopBossMusic();
         super.onDestroy();
+    }
+
+    @Override
+    public void onGameOver(int score, String difficulty) {
+        Intent intent = new Intent(this, RecordActivity.class);
+        intent.putExtra("score", score);
+        intent.putExtra("difficulty", difficulty);
+        startActivity(intent);
+
+        this.finish();
+    }
+
+    @Override
+    public void onScoreChanged(int score) {
+        scoreView.setText("Score: " + score);
+    }
+
+    @Override
+    public void onLifeChanged(int hp) {
+        lifeView.setText("Life: " + hp);
     }
 }
