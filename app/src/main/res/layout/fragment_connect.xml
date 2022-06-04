@@ -34,6 +34,75 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--   DEBUG CODE (delete later)     -->
+            <EditText
+                android:id="@+id/editText_test_connect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+            <!--   DEBUG CODE (delete later)     -->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:src="@drawable/title_match"
+                android:scaleType="fitStart"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="20dp">
+            </ImageView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:cardCornerRadius="5dp"
+                app:cardBackgroundColor="#8D322525"
+                android:layout_marginHorizontal="10dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textColor="#fff"
+                        android:text="hehehehehhehehehh">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/image_waiting"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:scaleType="fitCenter">
+                        </ImageView>
+
+                        <ImageButton
+                            android:id="@+id/button_start_connect"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/button_start_multiple">
+                        </ImageButton>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
