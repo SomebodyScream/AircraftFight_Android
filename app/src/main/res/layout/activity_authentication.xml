@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AuthenticationActivity"
+    android:background="@drawable/setting_background">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_back_authentication"
+            android:layout_width="130dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_back"
+            android:scaleType="centerInside"
+            android:layout_marginVertical="5dp"
+            tools:ignore="HardcodedText"
+            android:contentDescription="back button">
+        </ImageButton>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/authentication_activity_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>

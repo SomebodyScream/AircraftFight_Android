@@ -1,13 +1,10 @@
 package com.example.aircraftfight_android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -19,7 +16,7 @@ import com.google.android.material.card.MaterialCardView;
 public class SettingActivity extends BaseActivity {
 
     private SharedPreferenceHelper helper;
-    static String SPLABEL_SETTING = "settingConf";
+    static String SP_DATABASE_SETTING = "settingConf";
     static String SPLABEL_RECORD = "recordsConf";
     static String SPLABEL_SETTING_BGM = "background_music";
     static String SPLABEL_SETTING_SOUND_EFFECT = "sound_effect";
@@ -31,7 +28,7 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
 
         //Variable initialize
-        helper = new SharedPreferenceHelper(this, SPLABEL_SETTING);
+        helper = new SharedPreferenceHelper(this, SP_DATABASE_SETTING);
 
         //Instance declare
         ImageButton buttonClearRecord = findViewById(R.id.button_clear_record);
@@ -68,7 +65,8 @@ public class SettingActivity extends BaseActivity {
         });
 
         buttonSetAccount.setOnClickListener(v->{
-            //TODO
+            Intent intent = new Intent(this, AuthenticationActivity.class);
+            startActivity(intent);
         });
 
         switchOfflineRecord.setOnCheckedChangeListener((buttonView, isChecked)
