@@ -106,10 +106,4 @@ public class SharedPreferenceHelper {
         editor.clear().apply();
     }
 
-//    private void spInitial(){
-//        editor = context.getSharedPreferences(dataBaseLabel,Context.MODE_PRIVATE).edit();
-//        editor.putString(label,content);
-//        editor.apply();
-//    }
-
 }
