@@ -42,6 +42,8 @@ public class AccountFragment extends Fragment {
                 SharedPreferenceHelper.READ_MODE_STRING));
 
         button.setOnClickListener(v -> {
+            sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,"false");
+            sp.writeProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,"false");
             sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,false);
             if (activity != null){
                 activity.replaceFragmentLogin();

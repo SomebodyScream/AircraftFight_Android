@@ -79,6 +79,11 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    public void startAuthenticationActivity(){
+        Intent intent = new Intent(this, AuthenticationActivity.class);
+        startActivity(intent);
+    }
+
     public void replaceFragmentMulti(){
         replaceFragment(new ConnectFragment());
     }
