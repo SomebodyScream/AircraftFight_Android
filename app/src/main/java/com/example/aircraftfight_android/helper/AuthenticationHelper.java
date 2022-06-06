@@ -36,11 +36,17 @@ public class AuthenticationHelper {
         init();
     }
 
+    public String getUsername() {
+        init();
+        return username;
+    }
+
     /**
      * Use to verify the login status, data based on local storage, not the newest.
      * @return a boolean value indicates the login status
      */
     public boolean isLogin(){
+        init();
         return status;
     }
 

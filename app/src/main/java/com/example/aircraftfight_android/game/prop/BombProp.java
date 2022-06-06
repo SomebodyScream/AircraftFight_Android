@@ -1,7 +1,6 @@
 package com.example.aircraftfight_android.game.prop;
 
 import com.example.aircraftfight_android.activity.MainActivity;
-import com.example.aircraftfight_android.game.application.MusicThread;
 
 import java.util.LinkedList;
 import java.util.List;
