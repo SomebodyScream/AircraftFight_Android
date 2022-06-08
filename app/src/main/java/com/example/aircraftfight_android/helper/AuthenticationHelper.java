@@ -16,7 +16,7 @@ import okhttp3.Response;
 
 public class AuthenticationHelper {
 
-    private final String ip = "http://43.154.151.8:8080/login/authentication?";
+    private final String ip = "http://43.154.151.8:8080/aut/login?";
     private String username = "";
     private String token = "";
     private Boolean status = false;

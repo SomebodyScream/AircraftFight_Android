@@ -66,6 +66,10 @@ public class AuthenticationActivity extends BaseActivity {
         Toast.makeText(this, "Login fail", Toast.LENGTH_SHORT).show();
     }
 
+    public void failRegister(){
+        Toast.makeText(this, "Register fail", Toast.LENGTH_SHORT).show();
+    }
+
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

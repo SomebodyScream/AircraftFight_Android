@@ -24,11 +24,11 @@ import okhttp3.Response;
 
 public class LoginFragment extends Fragment {
 
-    private final String ip = "http://43.154.151.8:8080/login/authentication?";
+    private final String ip = "http://43.154.151.8:8080/aut/login?";
     private String username = "";
     private String passwd = "";
 
-    static class ResponseJson {
+    private static class ResponseJson {
         private String stat;
         private String token;
 
