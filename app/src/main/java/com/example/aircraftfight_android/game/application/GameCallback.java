@@ -6,4 +6,6 @@ public interface GameCallback {
     void onScoreChanged(int score);
 
     void onLifeChanged(int hp);
+
+    void onOpponentScoreChanged(int score);
 }

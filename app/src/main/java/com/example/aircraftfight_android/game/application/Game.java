@@ -35,6 +35,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     public final static String EASY = "EASY";
     public final static String NORMAL = "NORMAL";
     public final static String HARD = "HARD";
+    public final static String ONLINE = "ONLINE";
 
     protected GameCallback callback;
 
@@ -113,7 +114,7 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     private Canvas canvas;
 
     private DrawHeroHelper drawHeroHelper;
-    private Context context;
+    protected Context context;
 
     private void initView()
     {
@@ -202,6 +203,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             callback.onScoreChanged(score);
             callback.onLifeChanged(heroAircraft.getHp());
 
+            syncDataWithServer();
+
             // 游戏结束检查
             gameOverCheck();
 
@@ -217,6 +220,10 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     {
         // 跨越到新的周期
         return time / cycleDuration > (time - timeInterval) / cycleDuration;
+    }
+
+    protected void syncDataWithServer(){
+
     }
 
     //***********************

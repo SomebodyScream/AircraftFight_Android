@@ -18,12 +18,15 @@ import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.game.application.GameCallback;
 import com.example.aircraftfight_android.game.application.HardGame;
 import com.example.aircraftfight_android.game.application.NormalGame;
+import com.example.aircraftfight_android.game.application.OnlineGame;
+import com.example.aircraftfight_android.helper.AuthenticationHelper;
 
 public class GameActivity extends BaseActivity implements GameCallback
 {
     private Game game;
     private TextView scoreView;
     private TextView lifeView;
+    private TextView opponentScoreView;
     private ImageButton buttonPause;
     private ImageButton buttonResume;
     private FrameLayout grayMask;
@@ -36,6 +39,7 @@ public class GameActivity extends BaseActivity implements GameCallback
 
         scoreView = findViewById(R.id.score_view);
         lifeView = findViewById(R.id.life_view);
+        opponentScoreView = findViewById(R.id.opponent_score_view);
 
         buttonPause = findViewById(R.id.button_pause);
         buttonResume = findViewById(R.id.button_resume);
@@ -84,8 +88,13 @@ public class GameActivity extends BaseActivity implements GameCallback
         else if(difficulty.equals(Game.NORMAL)){
             game = new NormalGame(this, this);
         }
-        else{
+        else if(difficulty.equals(Game.HARD)){
             game = new HardGame(this, this);
+        }
+        else{
+            AuthenticationHelper authHelper = new AuthenticationHelper(this);
+            String playerId = authHelper.getUsername();
+            game = new OnlineGame(this, this, playerId);
         }
 
         game.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -133,5 +142,10 @@ public class GameActivity extends BaseActivity implements GameCallback
     @Override
     public void onLifeChanged(int hp) {
         lifeView.setText("Life: " + hp);
+    }
+
+    @Override
+    public void onOpponentScoreChanged(int score) {
+        opponentScoreView.setText("Opp:" + score);
     }
 }
