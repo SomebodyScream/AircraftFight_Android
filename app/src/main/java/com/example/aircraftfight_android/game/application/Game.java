@@ -20,6 +20,7 @@ import com.example.aircraftfight_android.game.prop.AbstractProp;
 import com.example.aircraftfight_android.game.prop.BombProp;
 import com.example.aircraftfight_android.game.prop.BombTarget;
 import com.example.aircraftfight_android.helper.DrawHeroHelper;
+import com.example.aircraftfight_android.manager.HeroManager;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -508,7 +509,9 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     protected void paint()
     {
         canvas = surfaceHolder.lockCanvas();
-        this.drawHeroHelper = new DrawHeroHelper(timeInterval,canvas,context);
+//        this.drawHeroHelper = new DrawHeroHelper(timeInterval,canvas,context);
+        HeroManager heroManager = HeroManager.getHeroManager(context);
+
 
         // 背景循环移动
 //        backgroundImage = Bitmap.createScaledBitmap(backgroundImage, canvas.getWidth(), canvas.getHeight(), false);
@@ -534,8 +537,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         paintImageWithPositionRevised(canvas, props);
 
         // 绘制英雄
-        drawHeroHelper.drawHero(time,heroAircraft.getLocationX(),heroAircraft.getLocationY());
-
+//        drawHeroHelper.drawHero(time,heroAircraft.getLocationX(),heroAircraft.getLocationY());
+        heroManager.drawHero(time,timeInterval,heroAircraft.getLocationX(),heroAircraft.getLocationY(),canvas);
         //绘制得分和生命值
 //        paintScoreAndLife(canvas);
 

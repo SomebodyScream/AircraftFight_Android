@@ -76,9 +76,9 @@ public class LoginFragment extends Fragment {
                     if (rsp.stat.equals("ac")){
                         SharedPreferenceHelper sp = new SharedPreferenceHelper(
                                 activity,AuthenticationActivity.SP_DATABASE_ACCOUNT);
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,true);
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,username);
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,rsp.token);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,true);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_USERNAME,username);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_USER_TOKEN,rsp.token);
                         if (activity != null){
                             activity.replaceFragmentAccount();
                         }

@@ -16,7 +16,7 @@
             android:name=".activity.AuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ChangeAcvitity"
+            android:name=".activity.ChangeActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ShoppingActivity"
