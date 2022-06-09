@@ -9,6 +9,7 @@ import com.example.aircraftfight_android.game.application.ImageManager;
 import java.util.HashMap;
 import com.example.aircraftfight_android.R;
 
+@Deprecated
 public class DrawHeroHelper {
 
     private final int timeInterval;

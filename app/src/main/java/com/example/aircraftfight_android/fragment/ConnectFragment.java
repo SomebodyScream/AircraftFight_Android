@@ -1,6 +1,7 @@
 package com.example.aircraftfight_android.fragment;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import com.example.aircraftfight_android.activity.MainActivity;
 import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.helper.HttpHelper;
+import com.example.aircraftfight_android.manager.HeroManager;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.json.JSONObject;
@@ -59,13 +62,27 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
 
         ImageButton buttonBack = (ImageButton) view.findViewById(R.id.button_back_connect);
         ImageButton buttonStart = view.findViewById(R.id.button_start_connect);
+        ImageButton buttonChangeHero = view.findViewById(R.id.button_change_hero_connect);
         imageViewWaiting = view.findViewById(R.id.image_waiting);
+
+        ImageView imageChooseHero = view.findViewById(R.id.image_choose_hero_connect);
+        ImageView imageChooseHeroCG = view.findViewById(R.id.image_choose_hero_cg_connect);
+        TextView textHeroInfo = view.findViewById(R.id.text_hero_info_connect);
+        textHeroInfo.setTypeface(Typeface.createFromAsset(view.getContext().getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
+        textHeroInfo.setText(HeroManager.getHeroManager(activity).getHeroInfo());
+        Glide.with(activity).load(HeroManager.getHeroManager(activity).drawHeroGif()).into(imageChooseHero);
+        Glide.with(activity).load(HeroManager.getHeroManager(activity).drawHeroCg()).into(imageChooseHeroCG);
+
 
         buttonBack.setBackgroundColor(Color.TRANSPARENT);
         buttonBack.setOnClickListener(v -> {
             if (activity != null){
                 activity.replaceFragmentChoice();
             }
+        });
+
+        buttonChangeHero.setOnClickListener(v -> {
+            activity.startChangeActivity();
         });
 
         Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);

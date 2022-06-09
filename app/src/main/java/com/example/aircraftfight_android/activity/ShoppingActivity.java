@@ -1,9 +1,8 @@
 package com.example.aircraftfight_android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.example.aircraftfight_android.R;
-import android.os.Bundle;
 
 public class ShoppingActivity extends BaseActivity {
 

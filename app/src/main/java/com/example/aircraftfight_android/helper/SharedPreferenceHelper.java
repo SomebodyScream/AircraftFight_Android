@@ -15,6 +15,9 @@ public class SharedPreferenceHelper {
     public static int READ_MODE_FLOAT = 3;
 
     public static String DEFAULT_VALUE = "114514";
+    public static Boolean DEFAULT_BOOL = false;
+    public static int DEFAULT_INT = -1;
+    public static float DEFAULT_FLOAT = -1;
 
     public SharedPreferenceHelper(Context context,String label){
         this.context = context;
@@ -85,13 +88,13 @@ public class SharedPreferenceHelper {
                 return sharedPreferences.getString(label, DEFAULT_VALUE);
             }
             case 1:{
-                return sharedPreferences.getBoolean(label,false);
+                return sharedPreferences.getBoolean(label,DEFAULT_BOOL);
             }
             case 2:{
-                return sharedPreferences.getInt(label,-1);
+                return sharedPreferences.getInt(label,DEFAULT_INT);
             }
             case 3:{
-                return sharedPreferences.getFloat(label,-1);
+                return sharedPreferences.getFloat(label,DEFAULT_FLOAT);
             }
         }
         return null;

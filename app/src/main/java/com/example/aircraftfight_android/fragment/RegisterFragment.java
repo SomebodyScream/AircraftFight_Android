@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -82,9 +81,9 @@ public class RegisterFragment extends Fragment {
                         if (rsp.stat.equals("ac")){
                             SharedPreferenceHelper sp = new SharedPreferenceHelper(
                                     activity,AuthenticationActivity.SP_DATABASE_ACCOUNT);
-                            sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,true);
-                            sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,username);
-                            sp.writeProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,rsp.token);
+                            sp.writeProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,true);
+                            sp.writeProperty(AuthenticationActivity.SP_LABEL_USERNAME,username);
+                            sp.writeProperty(AuthenticationActivity.SP_LABEL_USER_TOKEN,rsp.token);
                             if (activity != null){
                                 activity.replaceFragmentAccount();
                             }

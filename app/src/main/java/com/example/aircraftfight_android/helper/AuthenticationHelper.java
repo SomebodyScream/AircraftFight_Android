@@ -71,11 +71,11 @@ public class AuthenticationHelper {
                 try {
                     Log.d("WEB", "onResponse: "+jsonObject.getString("stat"));
                     if (jsonObject.getString("stat").equals("ac")){
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,true);
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,username);
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,jsonObject.getString("token"));
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,true);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_USERNAME,username);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_USER_TOKEN,jsonObject.getString("token"));
                     }else{
-                        sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,false);
+                        sp.writeProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,false);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,11 +91,11 @@ public class AuthenticationHelper {
     }
 
     private void init(){
-        username = (String) sp.readProperty(AuthenticationActivity.SPLABEL_USERNAME,
+        username = (String) sp.readProperty(AuthenticationActivity.SP_LABEL_USERNAME,
                 SharedPreferenceHelper.READ_MODE_STRING);
-        token = (String) sp.readProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,
+        token = (String) sp.readProperty(AuthenticationActivity.SP_LABEL_USER_TOKEN,
                 SharedPreferenceHelper.READ_MODE_STRING);
-        status = (Boolean) sp.readProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,
+        status = (Boolean) sp.readProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN);
     }
 }

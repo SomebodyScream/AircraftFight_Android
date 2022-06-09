@@ -17,10 +17,10 @@ public class SettingActivity extends BaseActivity {
 
     private SharedPreferenceHelper helper;
     static String SP_DATABASE_SETTING = "settingConf";
-    static String SPLABEL_RECORD = "recordsConf";
-    static String SPLABEL_SETTING_BGM = "background_music";
-    static String SPLABEL_SETTING_SOUND_EFFECT = "sound_effect";
-    static String SPLABEL_SETTING_OFFLINE_RECORD = "offline_record";
+    static String SP_LABEL_RECORD = "recordsConf";
+    static String SP_LABEL_SETTING_BGM = "background_music";
+    static String SP_LABEL_SETTING_SOUND_EFFECT = "sound_effect";
+    static String SP_LABEL_SETTING_OFFLINE_RECORD = "offline_record";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,11 @@ public class SettingActivity extends BaseActivity {
         buttonBack.setBackgroundColor(Color.TRANSPARENT);
         buttonClearRecord.setBackgroundColor(Color.TRANSPARENT);
         buttonSetAccount.setBackgroundColor(Color.TRANSPARENT);
-        switchBGM.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_BGM,
+        switchBGM.setChecked((Boolean) helper.readProperty(SP_LABEL_SETTING_BGM,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
-        switchSoundEffect.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_SOUND_EFFECT,
+        switchSoundEffect.setChecked((Boolean) helper.readProperty(SP_LABEL_SETTING_SOUND_EFFECT,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
-        switchOfflineRecord.setChecked((Boolean) helper.readProperty(SPLABEL_SETTING_OFFLINE_RECORD,
+        switchOfflineRecord.setChecked((Boolean) helper.readProperty(SP_LABEL_SETTING_OFFLINE_RECORD,
                 SharedPreferenceHelper.READ_MODE_BOOLEAN));
 
         //Listener set
@@ -70,22 +70,22 @@ public class SettingActivity extends BaseActivity {
         });
 
         switchOfflineRecord.setOnCheckedChangeListener((buttonView, isChecked)
-                -> helper.writeProperty(SPLABEL_SETTING_OFFLINE_RECORD,isChecked));
+                -> helper.writeProperty(SP_LABEL_SETTING_OFFLINE_RECORD,isChecked));
 
         switchBGM.setOnCheckedChangeListener((buttonView, isChecked) -> {
             MainActivity.musicHelper.setBgmOn(isChecked);
-            helper.writeProperty(SPLABEL_SETTING_BGM, isChecked);
+            helper.writeProperty(SP_LABEL_SETTING_BGM, isChecked);
         });
 
         switchSoundEffect.setOnCheckedChangeListener((buttonView, isChecked) -> {
             MainActivity.musicHelper.setSoundEffectOn(isChecked);
-            helper.writeProperty(SPLABEL_SETTING_SOUND_EFFECT, isChecked);
+            helper.writeProperty(SP_LABEL_SETTING_SOUND_EFFECT, isChecked);
         });
 
         buttonBack.setOnClickListener(v -> finish());
 
         buttonClearRecord.setOnClickListener(v -> {
-            helper.clearProperty(SPLABEL_RECORD);
+            helper.clearProperty(SP_LABEL_RECORD);
             Toast.makeText(this, "Records cleared!", Toast.LENGTH_SHORT).show();
         });
 

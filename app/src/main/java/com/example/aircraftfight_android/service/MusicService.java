@@ -17,7 +17,7 @@ public class MusicService extends Service {
     private final MusicBinder binder = new MusicBinder();
     private MediaPlayer player;
     private SoundPool soundPool;
-    private final HashMap<Integer, Integer> soundEffectHash = new HashMap<Integer, Integer>();
+    private final HashMap<Integer, Integer> soundEffectHash = new HashMap<>();
 
     private static final int SE_HERO_BULLET_SHOOT = R.raw.bullet;
     private static final int SE_HERO_BOMB = R.raw.bomb_explosion;

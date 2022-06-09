@@ -38,13 +38,13 @@ public class AccountFragment extends Fragment {
         TextView textView = view.findViewById(R.id.text_user_name);
         Button button = view.findViewById(R.id.button_logout);
 
-        textView.setText((String)sp.readProperty(AuthenticationActivity.SPLABEL_USERNAME,
+        textView.setText((String)sp.readProperty(AuthenticationActivity.SP_LABEL_USERNAME,
                 SharedPreferenceHelper.READ_MODE_STRING));
 
         button.setOnClickListener(v -> {
-            sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,"false");
-            sp.writeProperty(AuthenticationActivity.SPLABEL_USER_TOKEN,"false");
-            sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,false);
+            sp.writeProperty(AuthenticationActivity.SP_LABEL_USERNAME,"false");
+            sp.writeProperty(AuthenticationActivity.SP_LABEL_USER_TOKEN,"false");
+            sp.writeProperty(AuthenticationActivity.SP_LABEL_LOGIN_STATUS,false);
             if (activity != null){
                 activity.replaceFragmentLogin();
             }

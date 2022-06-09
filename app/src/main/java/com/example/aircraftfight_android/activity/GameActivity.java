@@ -1,9 +1,9 @@
 package com.example.aircraftfight_android.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,19 +82,21 @@ public class GameActivity extends BaseActivity implements GameCallback
 
         String difficulty = getIntent().getStringExtra("difficulty");
 
-        if(difficulty.equals(Game.EASY)){
-            game = new EasyGame(this, this);
-        }
-        else if(difficulty.equals(Game.NORMAL)){
-            game = new NormalGame(this, this);
-        }
-        else if(difficulty.equals(Game.HARD)){
-            game = new HardGame(this, this);
-        }
-        else{
-            AuthenticationHelper authHelper = new AuthenticationHelper(this);
-            String playerId = authHelper.getUsername();
-            game = new OnlineGame(this, this, playerId);
+        switch (difficulty) {
+            case Game.EASY:
+                game = new EasyGame(this, this);
+                break;
+            case Game.NORMAL:
+                game = new NormalGame(this, this);
+                break;
+            case Game.HARD:
+                game = new HardGame(this, this);
+                break;
+            default:
+                AuthenticationHelper authHelper = new AuthenticationHelper(this);
+                String playerId = authHelper.getUsername();
+                game = new OnlineGame(this, this, playerId);
+                break;
         }
 
         game.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -134,16 +136,19 @@ public class GameActivity extends BaseActivity implements GameCallback
         this.finish();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onScoreChanged(int score) {
         scoreView.setText("Score: " + score);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onLifeChanged(int hp) {
         lifeView.setText("Life: " + hp);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onOpponentScoreChanged(int score) {
         opponentScoreView.setText("Opp:" + score);
