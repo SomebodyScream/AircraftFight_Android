@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.activity.MainActivity;
+import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.helper.HttpHelper;
 
@@ -36,8 +37,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
     private MainActivity activity;
     private ImageView imageViewWaiting;
 
-    private final ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
-            new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
+    private ScheduledExecutorService executorService = null;
 
     public ConnectFragment() {
         // Required empty public constructor
@@ -68,19 +68,27 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
             }
         });
 
-        buttonStart.setOnClickListener(v -> {
-            Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);
+        Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);
+        imageViewWaiting.setVisibility(View.INVISIBLE);
 
+        buttonStart.setOnClickListener(v -> {
             if(!authHelper.isLogin()) // user didn't login
             {
                 activity.startAuthenticationActivity();
             }
             else
             {
+                imageViewWaiting.setVisibility(View.VISIBLE);
+                executorService = new ScheduledThreadPoolExecutor(1,
+                        new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
+
                 Runnable requestTask = () -> {
                     String url = HttpHelper.IP + "/match?" + "user=" + authHelper.getUsername();
                     HttpHelper.sendGetRequest(url, this);
                 };
+
+                Log.e("ConnectFragment", "start connect");
+
                 executorService.scheduleWithFixedDelay(requestTask, 0, 200, TimeUnit.MILLISECONDS);
             }
         });
@@ -106,7 +114,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
      */
     @Override
     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-        Log.d("ConnectFragment", "on response start");
+//        Log.d("ConnectFragment", "on response start");
 
         String responseJson = response.body().string();
         ServerResponseData responseData = new ServerResponseData(responseJson);
@@ -114,13 +122,15 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         if(responseData.isMatched())
         {
             executorService.shutdown();
+            imageViewWaiting.setVisibility(View.INVISIBLE);
+            Log.d( "ConnectFragment", "matched roomId: " + responseData.getRoomId());
 
-//            if(activity != null){
-//                activity.startGameActivity(Game.EASY);
-//            }
+            if(activity != null){
+                activity.startGameActivity(Game.ONLINE);
+            }
         }
 
-        Log.d("ConnectFragment", "on response down");
+//        Log.d("ConnectFragment", "on response down");
     }
 
     /**
@@ -134,7 +144,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         public ServerResponseData(String responseJson)
         {
             parseResponseJson(responseJson);
-            Log.d( "ConnectFragment", "roomId: " + roomId + " match_state: " + match_state);
+//            Log.d( "ConnectFragment", "roomId: " + roomId + " match_state: " + match_state);
         }
 
         public String getRoomId() {

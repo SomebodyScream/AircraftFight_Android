@@ -5,7 +5,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 public class HttpHelper {
-    public static final String IP = "http://localhost:8080/AircraftFight_Server_war_exploded";
+    public static final String IP = "http://192.168.31.167:8080/AircraftFight_Server_war_exploded";
 //    public static final String IP = "http://43.154.151.8:8080";
 //    public static final String PORT = "8080";
 
