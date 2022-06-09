@@ -125,10 +125,10 @@ public class GameActivity extends BaseActivity implements GameCallback
     }
 
     @Override
-    public void onGameOver(int score, String difficulty) {
+    public void onGameOver(int score, String gameMode) {
         Intent intent = new Intent(this, RecordActivity.class);
         intent.putExtra("score", score);
-        intent.putExtra("difficulty", difficulty);
+        intent.putExtra("gameMode", gameMode);
         startActivity(intent);
 
         this.finish();

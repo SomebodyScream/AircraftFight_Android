@@ -1,6 +1,5 @@
 package com.example.aircraftfight_android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +22,6 @@ import com.example.aircraftfight_android.helper.SingleRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -40,7 +38,7 @@ public class RecordActivity extends BaseActivity {
     private LinearLayout mRecordDetail;
     private int curSelectedPosition = -1;
 
-    private String difficulty;
+    private String gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +49,10 @@ public class RecordActivity extends BaseActivity {
         // 获取GameActivity传递的数据
         Intent intent = getIntent();
         int score = intent.getIntExtra("score", 0);
-        difficulty = intent.getStringExtra("difficulty");
+        gameMode = intent.getStringExtra("gameMode");
 
         TextView difficultyView = findViewById(R.id.difficulty_view);
-        difficultyView.setText("Difficulty: " + difficulty);
+        difficultyView.setText("Mode: " + gameMode);
 
         // 初始化详细记录弹窗
         initRecordDetailPage();
@@ -135,7 +133,7 @@ public class RecordActivity extends BaseActivity {
     {
         // 获取SPhelper
         singleSpHelper = new SharedPreferenceHelper(this, "SingleRecords");
-        String jsonList = (String) singleSpHelper.readProperty(difficulty, SharedPreferenceHelper.READ_MODE_STRING);
+        String jsonList = (String) singleSpHelper.readProperty(gameMode, SharedPreferenceHelper.READ_MODE_STRING);
 
         // json反序列化还原List
         if(!jsonList.equals(SharedPreferenceHelper.DEFAULT_VALUE)){
@@ -158,7 +156,7 @@ public class RecordActivity extends BaseActivity {
         Gson gson = new Gson();
         String jsonList = gson.toJson(singleRecords);
 
-        singleSpHelper.writeProperty(difficulty, jsonList);
+        singleSpHelper.writeProperty(gameMode, jsonList);
     }
 
     private void showRecordDetail(){

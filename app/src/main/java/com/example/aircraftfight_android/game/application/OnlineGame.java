@@ -27,7 +27,7 @@ public class OnlineGame extends Game implements okhttp3.Callback
         this.playerId = playerId;
 
         backgroundImage = ImageManager.BACKGROUND_IMAGE;
-        mode = Game.EASY;
+        mode = Game.ONLINE;
 
         eliteEnemyAriseProb = 0.15;
         enemyMaxNumber = 4;
@@ -69,8 +69,19 @@ public class OnlineGame extends Game implements okhttp3.Callback
     @Override
     protected void syncDataWithServer()
     {
-        String url = HttpHelper.IP + "/versus?" + "playerId=" + playerId + "&score=" + score;
+        String url = HttpHelper.IP + "/versus?" + "playerId=" + playerId + "&score=" + score + "&gameover=false";
         HttpHelper.sendGetRequest(url, this);
+    }
+
+    @Override
+    protected void gameOverCheck()
+    {
+        super.gameOverCheck();
+        if(heroAircraft.getHp() <= 0)
+        {
+            String url = HttpHelper.IP + "/versus?" + "playerId=" + playerId + "&score=" + score + "&gameover=true";
+            HttpHelper.sendGetRequest(url, this);
+        }
     }
 
     @Override

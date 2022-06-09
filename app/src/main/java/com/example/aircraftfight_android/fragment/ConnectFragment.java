@@ -37,8 +37,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
     private MainActivity activity;
     private ImageView imageViewWaiting;
 
-    private final ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
-            new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
+    private ScheduledExecutorService executorService = null;
 
     public ConnectFragment() {
         // Required empty public constructor
@@ -69,19 +68,27 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
             }
         });
 
-        buttonStart.setOnClickListener(v -> {
-            Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);
+        Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);
+        imageViewWaiting.setVisibility(View.INVISIBLE);
 
+        buttonStart.setOnClickListener(v -> {
             if(!authHelper.isLogin()) // user didn't login
             {
                 activity.startAuthenticationActivity();
             }
             else
             {
+                imageViewWaiting.setVisibility(View.VISIBLE);
+                executorService = new ScheduledThreadPoolExecutor(1,
+                        new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
+
                 Runnable requestTask = () -> {
                     String url = HttpHelper.IP + "/match?" + "user=" + authHelper.getUsername();
                     HttpHelper.sendGetRequest(url, this);
                 };
+
+                Log.e("ConnectFragment", "start connect");
+
                 executorService.scheduleWithFixedDelay(requestTask, 0, 200, TimeUnit.MILLISECONDS);
             }
         });
@@ -115,7 +122,8 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         if(responseData.isMatched())
         {
             executorService.shutdown();
-            Log.d( "ConnectFragment", "roomId: " + responseData.getRoomId());
+            imageViewWaiting.setVisibility(View.INVISIBLE);
+            Log.d( "ConnectFragment", "matched roomId: " + responseData.getRoomId());
 
             if(activity != null){
                 activity.startGameActivity(Game.ONLINE);
