@@ -39,8 +39,11 @@ public class MainActivity extends BaseActivity {
         musicHelper.setBgmOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_BGM, SharedPreferenceHelper.READ_MODE_BOOLEAN));
         musicHelper.setSoundEffectOn((Boolean) helper.readProperty(SettingActivity.SPLABEL_SETTING_SOUND_EFFECT, SharedPreferenceHelper.READ_MODE_BOOLEAN));
 
+
         AuthenticationHelper authenticationHelper = new AuthenticationHelper(this);
-        authenticationHelper.checkLogin();
+        if (authenticationHelper.isLogin()){
+            authenticationHelper.checkLogin();
+        }
 
         // 获取屏幕尺寸(包含状态栏，导航栏)
         Point outSize = new Point();
