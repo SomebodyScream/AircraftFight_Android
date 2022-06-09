@@ -1,6 +1,7 @@
 package com.example.aircraftfight_android.helper;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -57,6 +58,7 @@ public class AuthenticationHelper {
      */
     public boolean checkLogin(){
         String address = ip+"aut_mode=token&user="+username+"&token="+token;
+        Log.d("WEB", "ip: "+address);
         HttpHelper.sendOkHttpRequest(address,new okhttp3.Callback(){
 
             @Override
@@ -67,6 +69,7 @@ public class AuthenticationHelper {
                     e.printStackTrace();
                 }
                 try {
+                    Log.d("WEB", "onResponse: "+jsonObject.getString("stat"));
                     if (jsonObject.getString("stat").equals("ac")){
                         sp.writeProperty(AuthenticationActivity.SPLABEL_LOGIN_STATUS,true);
                         sp.writeProperty(AuthenticationActivity.SPLABEL_USERNAME,username);
