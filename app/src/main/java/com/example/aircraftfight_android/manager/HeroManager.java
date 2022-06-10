@@ -145,8 +145,8 @@ public class HeroManager {
     public void drawHero(int time,int timeInterval,int x,int y,Canvas canvas){
         int index = (time/timeInterval) % 5;
         Bitmap hero = heroHash.get(index);
-        x = x - ImageManager.REIMU_1.getHeight()/2;
-        y = y - ImageManager.REIMU_1.getWidth()/2;
+        x = x - ImageManager.REIMU_1.getWidth()/2;
+        y = y - ImageManager.REIMU_1.getHeight()/2;
         canvas.drawBitmap(hero, x, y, null);
     }
 }

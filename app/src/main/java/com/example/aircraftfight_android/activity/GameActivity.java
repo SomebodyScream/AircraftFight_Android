@@ -151,6 +151,8 @@ public class GameActivity extends BaseActivity implements GameCallback
     @SuppressLint("SetTextI18n")
     @Override
     public void onOpponentScoreChanged(int score) {
-        opponentScoreView.setText("Opp:" + score);
+        runOnUiThread(()->{
+            opponentScoreView.setText("Opp:" + score);
+        });
     }
 }

@@ -41,6 +41,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
     private ImageView imageViewWaiting;
 
     private ScheduledExecutorService executorService = null;
+    private boolean connectFailureFlag = false;
 
     public ConnectFragment() {
         // Required empty public constructor
@@ -64,6 +65,10 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         ImageButton buttonStart = view.findViewById(R.id.button_start_connect);
         ImageButton buttonChangeHero = view.findViewById(R.id.button_change_hero_connect);
         imageViewWaiting = view.findViewById(R.id.image_waiting);
+
+        TextView somebodyView = view.findViewById(R.id.somebody_icecream);
+        somebodyView.setSelected(true);
+        somebodyView.setTypeface(Typeface.createFromAsset(view.getContext().getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
 
         ImageView imageChooseHero = view.findViewById(R.id.image_choose_hero_connect);
         ImageView imageChooseHeroCG = view.findViewById(R.id.image_choose_hero_cg_connect);
@@ -95,6 +100,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
             }
             else
             {
+                connectFailureFlag = false;
                 imageViewWaiting.setVisibility(View.VISIBLE);
                 executorService = new ScheduledThreadPoolExecutor(1,
                         new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
@@ -106,7 +112,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
 
                 Log.e("ConnectFragment", "start connect");
 
-                executorService.scheduleWithFixedDelay(requestTask, 0, 200, TimeUnit.MILLISECONDS);
+                executorService.scheduleWithFixedDelay(requestTask, 0, 500, TimeUnit.MILLISECONDS);
             }
         });
 
@@ -119,10 +125,12 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
     @Override
     public void onFailure(@NonNull Call call, @NonNull IOException e) {
         executorService.shutdown();
-        if(activity != null){
+        if(activity != null && !connectFailureFlag){
+            imageViewWaiting.setVisibility(View.INVISIBLE);
             activity.runOnUiThread(()->{
                 Toast.makeText(activity, "Failed in connection. Please try again.", Toast.LENGTH_SHORT).show();
             });
+            connectFailureFlag = true;
         }
     }
 
@@ -139,15 +147,15 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         if(responseData.isMatched())
         {
             executorService.shutdown();
-            imageViewWaiting.setVisibility(View.INVISIBLE);
             Log.d( "ConnectFragment", "matched roomId: " + responseData.getRoomId());
 
             if(activity != null){
-                activity.startGameActivity(Game.ONLINE);
+                activity.runOnUiThread(()->{
+                    imageViewWaiting.setVisibility(View.INVISIBLE);
+                    activity.startGameActivity(Game.ONLINE);
+                });
             }
         }
-
-//        Log.d("ConnectFragment", "on response down");
     }
 
     /**

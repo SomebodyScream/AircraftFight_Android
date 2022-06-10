@@ -56,22 +56,28 @@
                 app:cardBackgroundColor="#8D322525"
                 android:layout_marginHorizontal="10dp">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/somebody_icecream"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginHorizontal="20dp"
-                        android:gravity="center"
-                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="三倍 ⭐ Ice Cream !!! リンク~スタート~"
+                        android:textSize="24sp"
                         android:textColor="#fff"
-                        android:text="三倍⭐Ice Cream !!!">
-
-                    </TextView>
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:freezesText="true"/>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -81,21 +87,23 @@
                         <ImageView
                             android:id="@+id/image_waiting"
                             android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:scaleType="fitCenter">
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:scaleType="centerCrop">
                         </ImageView>
 
                         <ImageButton
                             android:id="@+id/button_start_connect"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:scaleType="fitCenter"
                             android:background="@drawable/button_start_multiple">
                         </ImageButton>
                     </LinearLayout>
 
-                </FrameLayout>
+                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
