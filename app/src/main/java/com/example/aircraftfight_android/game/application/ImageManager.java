@@ -74,7 +74,7 @@ public class ImageManager {
         BACKGROUND_IMAGE_4 = BitmapFactory.decodeResource(resources, R.drawable.bg4);
         BACKGROUND_IMAGE_5 = BitmapFactory.decodeResource(resources, R.drawable.bg5);
 
-        HERO_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.hero);
+        HERO_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.gif_reimu);
         MOB_ENEMY_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.mob);
         HERO_BULLET_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.bullet_hero);
         ENEMY_BULLET_IMAGE = BitmapFactory.decodeResource(resources, R.drawable.bullet_enemy);

@@ -497,6 +497,14 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             return false;
         }
 
+        if(x < heroAircraft.getLocationX() - heroAircraft.getWidth() / 2
+                || x > heroAircraft.getLocationX() + heroAircraft.getWidth() / 2
+                || y < heroAircraft.getLocationY() - heroAircraft.getHeight() / 2
+                || y > heroAircraft.getLocationY() + heroAircraft.getHeight() / 2
+        ){
+            return false;
+        }
+
         heroAircraft.setLocation(x, y);
 
         return true;

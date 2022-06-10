@@ -31,7 +31,7 @@ public class OnlineGame extends Game implements okhttp3.Callback
 
         eliteEnemyAriseProb = 0.15;
         enemyMaxNumber = 4;
-        bossScoreThreshold = 10000007;
+        bossScoreThreshold = 450;
         enemyAriseCycleDuration = 650;
     }
 

@@ -15,7 +15,7 @@ public class HeroAircraft extends AbstractAircraft
 {
     private static HeroAircraft heroAircraft = new HeroAircraft(
             MainActivity.WIDTH / 2,
-            MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight() ,
+            MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight() / 2,
             0, 0, 300, 10, 1
     );
 
@@ -31,7 +31,7 @@ public class HeroAircraft extends AbstractAircraft
     public void initHeroAircraft()
     {
         heroAircraft.setLocation(MainActivity.WIDTH / 2,
-                MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight());
+                MainActivity.HEIGHT - ImageManager.HERO_IMAGE.getHeight() / 2);
         heroAircraft.increaseHp(maxHp);
         heroAircraft.setShootNum(1);
         heroAircraft.setShootStrategy(new DirectShoot());
