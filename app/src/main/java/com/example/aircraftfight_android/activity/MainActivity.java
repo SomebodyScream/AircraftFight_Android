@@ -79,9 +79,9 @@ public class MainActivity extends BaseActivity {
         replaceFragment(fragment);
     }
 
-    public void startGameActivity(String difficulty){
+    public void startGameActivity(String gameMode){
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("difficulty", difficulty);
+        intent.putExtra("gameMode", gameMode);
         startActivity(intent);
     }
 

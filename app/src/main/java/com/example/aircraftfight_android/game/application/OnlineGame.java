@@ -74,14 +74,11 @@ public class OnlineGame extends Game implements okhttp3.Callback
     }
 
     @Override
-    protected void gameOverCheck()
+    public void finishGame()
     {
-        super.gameOverCheck();
-        if(heroAircraft.getHp() <= 0)
-        {
-            String url = HttpHelper.IP + "/versus?" + "playerId=" + playerId + "&score=" + score + "&gameover=true";
-            HttpHelper.sendGetRequest(url, this);
-        }
+        String url = HttpHelper.IP + "/versus?" + "playerId=" + playerId + "&score=" + score + "&gameover=true";
+        HttpHelper.sendGetRequest(url, this);
+        super.finishGame();
     }
 
     @Override
@@ -100,7 +97,7 @@ public class OnlineGame extends Game implements okhttp3.Callback
             opponentScore = jsonObject.getInt( "score" );
         }
         catch(Exception e){
-            Log.d( "GameActivity", e.toString()) ;
+            Log.e( "GameActivity", e.toString()) ;
             e.printStackTrace();
         }
 

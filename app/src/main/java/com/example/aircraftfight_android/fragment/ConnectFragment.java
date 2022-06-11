@@ -189,7 +189,7 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
                 match_state = jsonObject.getBoolean( "match_state");
             }
             catch(Exception e){
-                Log.d( "ConnectFragment", e.toString()) ;
+                Log.e( "ConnectFragment", e.toString()) ;
                 e.printStackTrace();
             }
         }

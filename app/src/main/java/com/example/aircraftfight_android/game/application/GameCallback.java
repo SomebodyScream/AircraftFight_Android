@@ -1,7 +1,7 @@
 package com.example.aircraftfight_android.game.application;
 
 public interface GameCallback {
-    void onGameOver(int score, String gameMode);
+    void onGameOver(int score);
 
     void onScoreChanged(int score);
 
