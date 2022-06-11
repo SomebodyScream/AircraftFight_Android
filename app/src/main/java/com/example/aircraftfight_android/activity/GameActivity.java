@@ -29,60 +29,68 @@ public class GameActivity extends BaseActivity implements GameCallback
     private TextView opponentScoreView;
     private ImageButton buttonPause;
     private ImageButton buttonResume;
+    private ImageButton buttonBack;
+    private LinearLayout pauseView;
     private FrameLayout grayMask;
+    private String gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        gameMode = getIntent().getStringExtra("gameMode");
+
         setContentView(R.layout.activity_game);
 
         scoreView = findViewById(R.id.score_view);
         lifeView = findViewById(R.id.life_view);
         opponentScoreView = findViewById(R.id.opponent_score_view);
 
+        pauseView = findViewById(R.id.pause_view);
+
         buttonPause = findViewById(R.id.button_pause);
         buttonResume = findViewById(R.id.button_resume);
+        buttonBack = findViewById(R.id.button_game_back);
         grayMask = findViewById(R.id.gray_mask);
 
         grayMask.setVisibility(View.GONE);
 
         initGameView();
-        initPauseAndResumeButton();
+        initPauseView();
     }
 
     private void pauseGame()
     {
         game.pauseGame();
-        buttonResume.setVisibility(View.VISIBLE);
+        pauseView.setVisibility(View.VISIBLE);
         grayMask.setVisibility(View.VISIBLE);
     }
 
     private void resumeGame()
     {
         game.resumeGame();
-        buttonResume.setVisibility(View.GONE);
+        pauseView.setVisibility(View.GONE);
         grayMask.setVisibility(View.GONE);
     }
 
-    private void initPauseAndResumeButton()
+    private void initPauseView()
     {
         buttonPause.setBackgroundColor(Color.TRANSPARENT);
         buttonResume.setBackgroundColor(Color.TRANSPARENT);
+        buttonBack.setBackgroundColor(Color.TRANSPARENT);
 
-        buttonResume.setVisibility(View.GONE);
+        pauseView.setVisibility(View.GONE);
 
         buttonPause.setOnClickListener(v -> this.pauseGame());
         buttonResume.setOnClickListener(v -> this.resumeGame());
+        buttonBack.setOnClickListener(v -> this.finish());
     }
 
     private void initGameView()
     {
         FrameLayout container = findViewById(R.id.game_container);
 
-        String difficulty = getIntent().getStringExtra("difficulty");
-
-        switch (difficulty) {
+        switch (gameMode) {
             case Game.EASY:
                 game = new EasyGame(this, this);
                 break;
@@ -121,13 +129,12 @@ public class GameActivity extends BaseActivity implements GameCallback
 
     @Override
     protected void onDestroy() {
-        MainActivity.musicHelper.pauseBackgroundMusic();
-        MainActivity.musicHelper.stopBossMusic();
+        game.finishGame();
         super.onDestroy();
     }
 
     @Override
-    public void onGameOver(int score, String gameMode) {
+    public void onGameOver(int score) {
         Intent intent = new Intent(this, RecordActivity.class);
         intent.putExtra("score", score);
         intent.putExtra("gameMode", gameMode);

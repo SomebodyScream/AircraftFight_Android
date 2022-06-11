@@ -91,6 +91,8 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     protected int heroShootCycleDuration = 450;
     protected int enemyShootCycleDuration = 600;
 
+    protected int syncCycleDuration = 500;
+
     protected int backgroundSplitLength = 0;
 
     /**
@@ -204,7 +206,10 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             callback.onScoreChanged(score);
             callback.onLifeChanged(heroAircraft.getHp());
 
-            syncDataWithServer();
+            if(timeCountAndNewCycleJudge(syncCycleDuration)){
+                // 联网对战时同步分数
+                syncDataWithServer();
+            }
 
             // 游戏结束检查
             gameOverCheck();
@@ -471,17 +476,23 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
     /**
      * 检测游戏结束
      */
-    protected void gameOverCheck()
+    protected final void gameOverCheck()
     {
-        if (heroAircraft.getHp() <= 0)
-        {
-            executorService.shutdown();
-            MainActivity.musicHelper.pauseBackgroundMusic();
-            MainActivity.musicHelper.stopBossMusic();
-
+        if (heroAircraft.getHp() <= 0) {
+            finishGame();
             MainActivity.musicHelper.playGameOver();
-            callback.onGameOver(score, mode);
+            callback.onGameOver(score);
         }
+    }
+
+    /**
+     * 游戏结束动作
+     */
+    public void finishGame()
+    {
+        executorService.shutdown();
+        MainActivity.musicHelper.pauseBackgroundMusic();
+        MainActivity.musicHelper.stopBossMusic();
     }
 
 
@@ -547,8 +558,6 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
         // 绘制英雄
 //        drawHeroHelper.drawHero(time,heroAircraft.getLocationX(),heroAircraft.getLocationY());
         heroManager.drawHero(time,timeInterval,heroAircraft.getLocationX(),heroAircraft.getLocationY(),canvas);
-        //绘制得分和生命值
-//        paintScoreAndLife(canvas);
 
         surfaceHolder.unlockCanvasAndPost(canvas);
     }
@@ -564,20 +573,5 @@ public abstract class Game extends SurfaceView implements SurfaceHolder.Callback
             canvas.drawBitmap(image, object.getLocationX() - image.getWidth() / 2,
                     object.getLocationY() - image.getHeight() / 2, null);
         }
-    }
-
-    @Deprecated
-    protected void paintScoreAndLife(Canvas canvas)
-    {
-        float x = 50;
-        float y = 150;
-
-        Paint paint = new Paint();
-        paint.setTextSize(100);
-        paint.setColor(Color.RED);
-        paint.setStyle(Paint.Style.FILL);
-
-        canvas.drawText("Score: " + score, x, y, paint);
-        canvas.drawText("Life: " + heroAircraft.getHp(), x, y + 100, paint);
     }
 }
