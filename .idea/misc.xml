@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/activity_record.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_choice.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_multi_record.xml" value="0.1388888888888889" />
         <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_register.xml" value="0.3734375" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_single_record.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/fragment_single_records.xml" value="0.18489583333333334" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/item_multi_record.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/layout/item_single_record.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidStudioProjects/AircraftFight_Android/AircraftFight_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.193" />
         <entry key="..\:/Users/aucki/Desktop/AircraftFight_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159" />
         <entry key="..\:/Users/aucki/Desktop/AircraftFight_Android/app/src/main/res/drawable/mbp.xml" value="0.159" />
@@ -21,7 +29,7 @@
         <entry key="..\:/Users/aucki/Desktop/AircraftFight_Android/app/src/main/res/layout/item_single_record.xml" value="0.1" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.326" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/drawable/img.xml" value="0.217" />
-        <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_game.xml" value="0.5" />
+        <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_game.xml" value="0.22" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_main.xml" value="0.27445652173913043" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_record.xml" value="0.21829710144927536" />
         <entry key="..\:/code/project/AircraftFight_Android/app/src/main/res/layout/activity_setting.xml" value="0.36614583333333334" />

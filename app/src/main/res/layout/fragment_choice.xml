@@ -24,15 +24,6 @@
                 android:textStyle="bold"
                 android:textColor="#FFFFFF">
             </TextView>
-            <TextView
-                android:id="@+id/text_main_page_point"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginHorizontal="5dp"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF">
-            </TextView>
 
         </LinearLayout>
 
@@ -115,15 +106,15 @@
 
                         <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp">
+                            android:layout_height="56dp">
                             <ImageButton
-                                android:id="@+id/button_store"
-                                android:layout_width="160dp"
-                                android:layout_height="60dp"
+                                android:id="@+id/button_record"
+                                android:layout_width="140dp"
+                                android:layout_height="56dp"
                                 android:layout_gravity="start"
                                 android:scaleType="fitCenter"
                                 android:background="@drawable/single_button_4"
-                                android:contentDescription="shopping"
+                                android:contentDescription="setting"
                                 tools:ignore="HardcodedText">
                             </ImageButton>
                         </FrameLayout>

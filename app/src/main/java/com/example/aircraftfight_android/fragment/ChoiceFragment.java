@@ -1,6 +1,7 @@
 package com.example.aircraftfight_android.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -17,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.activity.MainActivity;
+import com.example.aircraftfight_android.activity.RecordActivity;
+import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.manager.HeroManager;
 
@@ -43,7 +46,7 @@ public class ChoiceFragment extends Fragment {
         ImageButton buttonMultiplayer = view.findViewById(R.id.button_multiplayer);
         ImageButton buttonSinglePlayer = view.findViewById(R.id.button_singleplayer);
         ImageButton buttonSetting = view.findViewById(R.id.button_setting);
-        ImageButton buttonShopping = view.findViewById(R.id.button_store);
+        ImageButton buttonShopping = view.findViewById(R.id.button_record);
         ImageButton buttonChange = view.findViewById(R.id.button_change_hero);
 
         ImageView imageView = view.findViewById(R.id.image_show_hero);
@@ -51,10 +54,8 @@ public class ChoiceFragment extends Fragment {
         Glide.with(activity).load(HeroManager.getHeroManager(activity).drawHeroGif()).into(imageView);
         TextView textVersion = view.findViewById(R.id.text_app_v);
         TextView textUsername = view.findViewById(R.id.text_main_page_user);
-        TextView textPoint = view.findViewById(R.id.text_main_page_point);
 
         textUsername.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-        textPoint.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
 
         PackageManager pm = activity.getPackageManager();
         try {
@@ -66,8 +67,8 @@ public class ChoiceFragment extends Fragment {
         AuthenticationHelper authenticationHelper = new AuthenticationHelper(activity);
         if (authenticationHelper.isLogin()){
             textUsername.setText("USER : "+authenticationHelper.getUsername());
-            textPoint.setText("PTS : "+"1000");
-            //TODO:point
+        }else{
+            textUsername.setText("USER : not login in");
         }
 
         // Listeners set
@@ -77,7 +78,11 @@ public class ChoiceFragment extends Fragment {
 
         buttonSinglePlayer.setOnClickListener(v -> activity.replaceFragmentDifficulty());
 
-        buttonShopping.setOnClickListener(v -> activity.startShoppingActivity());
+        buttonShopping.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, RecordActivity.class);
+            intent.putExtra("gameMode", Game.ONLINE);
+            startActivity(intent);
+        });
 
         buttonChange.setOnClickListener(v -> activity.startChangeActivity());
         return view;
