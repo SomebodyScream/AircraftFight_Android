@@ -16,22 +16,13 @@ import android.widget.TextView;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.adapter.SingleRecordAdapter;
 import com.example.aircraftfight_android.callback.RecordActivityCallBack;
-import com.example.aircraftfight_android.helper.MultiRecord;
-import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
+import com.example.aircraftfight_android.helper.AuthenticationHelper;
+import com.example.aircraftfight_android.helper.SingleRecordHelper;
 import com.example.aircraftfight_android.helper.SingleRecord;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.Date;
-import java.util.LinkedList;
 
 public class RecordActivity extends BaseActivity {
 
-    private LinkedList<SingleRecord> singleRecords= new LinkedList<>();
-    private LinkedList<MultiRecord> multiRecords= new LinkedList<>();
-
-    private SharedPreferenceHelper singleSpHelper;
-    private SharedPreferenceHelper multiSpHelper;
+    private SingleRecordHelper recordHelper;
 
     SingleRecordAdapter singleAdapter;
 
@@ -51,14 +42,23 @@ public class RecordActivity extends BaseActivity {
         int score = intent.getIntExtra("score", 0);
         gameMode = intent.getStringExtra("gameMode");
 
+        // 初始化标题显示游戏模式
         TextView difficultyView = findViewById(R.id.difficulty_view);
         difficultyView.setText("Mode: " + gameMode);
 
+        // 获取玩家姓名
+        String playerName = "Anonymous";
+        AuthenticationHelper authHelper = new AuthenticationHelper(this);
+        if(authHelper.isLogin()){
+            playerName = authHelper.getUsername();
+        }
+
+        // 初始化记录管理器并添加新记录
+        recordHelper = new SingleRecordHelper(this, gameMode);
+        recordHelper.addRecord(playerName, score);
+
         // 初始化详细记录弹窗
         initRecordDetailPage();
-
-        // 从文件加载得分记录并添加本次记录
-        initSingleRecords(score);
 
         // 初始化RecyclerView
         initRecyclerView();
@@ -83,8 +83,7 @@ public class RecordActivity extends BaseActivity {
 
         deleteButton.setOnClickListener(v -> {
             if(curSelectedPosition != -1){
-                singleRecords.remove(curSelectedPosition);
-                saveRecordsToLocal();
+                recordHelper.removeRecord(curSelectedPosition);
                 curSelectedPosition = -1;
                 hideRecordDetail();
                 refreshRecyclerView();//Need to refresh list here!
@@ -111,7 +110,8 @@ public class RecordActivity extends BaseActivity {
             @Override
             public void recordOnClick(int position) {
                 curSelectedPosition = position;
-                SingleRecord record = singleRecords.get(position);
+                SingleRecord record = recordHelper.getRecord(position);
+
                 playerNameView.setText(record.getPlayerName());
                 scoreView.setText(String.valueOf(record.getScore()));
                 dateView.setText(record.getDate().toString());
@@ -119,7 +119,8 @@ public class RecordActivity extends BaseActivity {
             }
         };
 
-        singleAdapter = new SingleRecordAdapter(singleRecords, callBack);
+        singleAdapter = new SingleRecordAdapter(
+                recordHelper.getAllRecords(SingleRecordHelper.ORDER_SCORE_DESC), callBack);
         refreshRecyclerView();
     }
 
@@ -127,36 +128,6 @@ public class RecordActivity extends BaseActivity {
     {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_record);
         recyclerView.setAdapter(singleAdapter);
-    }
-
-    private void initSingleRecords(int score)
-    {
-        // 获取SPhelper
-        singleSpHelper = new SharedPreferenceHelper(this, "SingleRecords");
-        String jsonList = (String) singleSpHelper.readProperty(gameMode, SharedPreferenceHelper.READ_MODE_STRING);
-
-        // json反序列化还原List
-        if(!jsonList.equals(SharedPreferenceHelper.DEFAULT_VALUE)){
-            Gson gson = new Gson();
-            singleRecords = gson.fromJson(jsonList, new TypeToken<LinkedList<SingleRecord>>(){}.getType());
-        }
-
-        addSingleRecord(score);
-    }
-
-    private void addSingleRecord(int score)
-    {
-        singleRecords.add(new SingleRecord("test", score, new Date()));
-        singleRecords.sort((SingleRecord r1, SingleRecord r2) -> r2.getScore() - r1.getScore());
-        saveRecordsToLocal();
-    }
-
-    private void saveRecordsToLocal()
-    {
-        Gson gson = new Gson();
-        String jsonList = gson.toJson(singleRecords);
-
-        singleSpHelper.writeProperty(gameMode, jsonList);
     }
 
     private void showRecordDetail(){
