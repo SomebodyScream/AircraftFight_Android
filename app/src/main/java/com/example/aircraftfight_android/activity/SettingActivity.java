@@ -16,11 +16,11 @@ import com.google.android.material.card.MaterialCardView;
 public class SettingActivity extends BaseActivity {
 
     private SharedPreferenceHelper helper;
-    static String SP_DATABASE_SETTING = "settingConf";
-    static String SP_LABEL_RECORD = "recordsConf";
-    static String SP_LABEL_SETTING_BGM = "background_music";
-    static String SP_LABEL_SETTING_SOUND_EFFECT = "sound_effect";
-    static String SP_LABEL_SETTING_OFFLINE_RECORD = "offline_record";
+    public static String SP_DATABASE_SETTING = "settingConf";
+    public static String SP_LABEL_RECORD = "recordsConf";
+    public static String SP_LABEL_SETTING_BGM = "background_music";
+    public static String SP_LABEL_SETTING_SOUND_EFFECT = "sound_effect";
+    public static String SP_LABEL_SETTING_OFFLINE_RECORD = "offline_record";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

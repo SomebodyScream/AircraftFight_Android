@@ -89,6 +89,7 @@ public class MultiRecordFragment extends Fragment implements okhttp3.Callback{
         refreshRecyclerView();
     }
 
+    @SuppressLint("SetTextI18n")
     private void refreshUI(MultiRecord multiRecord)
     {
         if (multiRecord!=null){
@@ -140,6 +141,7 @@ public class MultiRecordFragment extends Fragment implements okhttp3.Callback{
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
+        recordHelper.addRecords();
         if (!recordHelper.getAllRecords(MultiRecordHelper.ORDER_DATE_DESC).isEmpty()){
             MultiRecord mostRecentRecord = recordHelper.getAllRecords(MultiRecordHelper.ORDER_DATE_DESC).get(0);
             activity.runOnUiThread(() -> {

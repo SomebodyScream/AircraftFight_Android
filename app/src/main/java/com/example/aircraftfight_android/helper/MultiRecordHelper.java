@@ -3,32 +3,14 @@ package com.example.aircraftfight_android.helper;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import com.example.aircraftfight_android.activity.AuthenticationActivity;
-import com.example.aircraftfight_android.fragment.LoginFragment;
+import com.example.aircraftfight_android.activity.SettingActivity;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
-
-import okhttp3.Call;
-import okhttp3.OkHttp;
-import okhttp3.Response;
 
 public class MultiRecordHelper
 {
@@ -53,9 +35,13 @@ public class MultiRecordHelper
         this.context = context;
         spHelper = new SharedPreferenceHelper(context, "Records");
 
-
+        records = readRecordsFromLocal();
         AuthenticationHelper ap = new AuthenticationHelper(context);
-        if (ap.isLogin()){
+        SharedPreferenceHelper spHelper = new SharedPreferenceHelper(context,SettingActivity.SP_DATABASE_SETTING);
+        Boolean isOffline = (Boolean) spHelper.readProperty(SettingActivity.SP_LABEL_SETTING_OFFLINE_RECORD,
+                SharedPreferenceHelper.READ_MODE_BOOLEAN);
+        if (ap.isLogin() && (!isOffline)){
+            records.clear();
             pullRecords(HttpHelper.IP+"/rec?user="+ap.getUsername());
         }else{
             records = readRecordsFromLocal();
@@ -79,6 +65,14 @@ public class MultiRecordHelper
     public void addRecord(String userName, int userScore, String opponentName, int opponentScore, Date date)
     {
         records.add(new MultiRecord(userName, opponentName, userScore, opponentScore, date));
+        saveRecordsToLocal();
+    }
+
+    /**
+     * Add a new record (using specified date)
+     */
+    public void addRecords()
+    {
         saveRecordsToLocal();
     }
 
@@ -159,7 +153,6 @@ public class MultiRecordHelper
     public List<MultiRecord> readRecordsFromLocal()
     {
         String jsonList = (String) spHelper.readProperty(label, SharedPreferenceHelper.READ_MODE_STRING);
-
         // deserialize json to get original list
         if(!jsonList.equals(SharedPreferenceHelper.DEFAULT_VALUE)){
             Gson gson = new Gson();
@@ -177,7 +170,6 @@ public class MultiRecordHelper
     {
         Gson gson = new Gson();
         String jsonList = gson.toJson(records);
-
         spHelper.writeProperty(label, jsonList);
     }
 
