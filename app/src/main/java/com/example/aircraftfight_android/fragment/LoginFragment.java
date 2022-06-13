@@ -29,8 +29,8 @@ public class LoginFragment extends Fragment {
     private String passwd = "";
 
     private static class ResponseJson {
-        private String stat;
-        private String token;
+        private final String stat;
+        private final String token;
 
         protected ResponseJson(String stat,String token){
             this.stat = stat;

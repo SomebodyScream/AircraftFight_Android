@@ -1,27 +1,23 @@
 package com.example.aircraftfight_android.adapter;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aircraftfight_android.R;
-import com.example.aircraftfight_android.activity.RecordActivity;
 import com.example.aircraftfight_android.callback.RecordActivityCallBack;
 import com.example.aircraftfight_android.helper.SingleRecord;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class SingleRecordAdapter extends RecyclerView.Adapter<SingleRecordAdapter.ViewHolder>
 {
-    private List<SingleRecord> singleRecords= new LinkedList<>();
-    private RecordActivityCallBack callBack;
+    private final List<SingleRecord> singleRecords;
+    private final RecordActivityCallBack callBack;
 
     public SingleRecordAdapter(List<SingleRecord> singleRecords, RecordActivityCallBack callback){
         this.singleRecords = singleRecords;

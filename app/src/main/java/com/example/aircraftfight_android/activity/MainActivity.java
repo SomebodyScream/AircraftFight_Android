@@ -91,15 +91,15 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void startRecordActivity(int score, String gameMode){
+    public void startRecordActivity(int score){
         Intent intent = new Intent(this, RecordActivity.class);
         intent.putExtra("score", score);
         intent.putExtra("gameMode", Game.ONLINE);
         startActivity(intent);
     }
 
-    public void startRecordActivity(String gameMode){
-        startRecordActivity(-1, Game.ONLINE);
+    public void startRecordActivity(){
+        startRecordActivity(-1);
     }
 
     public void startAuthenticationActivity(){

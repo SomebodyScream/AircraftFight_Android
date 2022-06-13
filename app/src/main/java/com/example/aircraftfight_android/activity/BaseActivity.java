@@ -1,6 +1,5 @@
 package com.example.aircraftfight_android.activity;
 
-import android.os.Build;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +9,7 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && Build.VERSION.SDK_INT >= 19)
+        if (hasFocus)
         {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(

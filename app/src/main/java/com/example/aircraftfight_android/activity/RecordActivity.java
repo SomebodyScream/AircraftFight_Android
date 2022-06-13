@@ -1,5 +1,6 @@
 package com.example.aircraftfight_android.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -25,6 +26,7 @@ public class RecordActivity extends BaseActivity {
     private String curMode;
     private TextView textView;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +86,7 @@ public class RecordActivity extends BaseActivity {
         mVideoView.setOnPreparedListener(mp -> mp.setLooping(true));
     }
 
+    @SuppressLint("SetTextI18n")
     private void changeRecordMode(String gameMode)
     {
         if(!gameMode.equals(curMode))

@@ -2,15 +2,11 @@ package com.example.aircraftfight_android.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.VideoView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.manager.HeroManager;

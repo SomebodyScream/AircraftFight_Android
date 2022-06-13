@@ -19,9 +19,7 @@
         <activity
             android:name=".activity.ChangeActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.ShoppingActivity"
-            android:exported="false" />
+
 
         <service
             android:name=".service.MusicService"
