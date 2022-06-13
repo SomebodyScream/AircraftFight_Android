@@ -7,5 +7,5 @@ public interface GameCallback {
 
     void onLifeChanged(int hp);
 
-    void onOpponentScoreChanged(int score);
+    void onOpponentScoreChanged(String name, int score);
 }
