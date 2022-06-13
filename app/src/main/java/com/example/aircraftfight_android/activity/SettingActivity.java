@@ -10,7 +10,6 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.aircraftfight_android.R;
-import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 import com.google.android.material.card.MaterialCardView;
 
@@ -18,7 +17,6 @@ public class SettingActivity extends BaseActivity {
 
     private SharedPreferenceHelper helper;
     public static String SP_DATABASE_SETTING = "settingConf";
-    public static String SP_LABEL_RECORD = "recordsConf";
     public static String SP_LABEL_SETTING_BGM = "background_music";
     public static String SP_LABEL_SETTING_SOUND_EFFECT = "sound_effect";
     public static String SP_LABEL_SETTING_OFFLINE_RECORD = "offline_record";

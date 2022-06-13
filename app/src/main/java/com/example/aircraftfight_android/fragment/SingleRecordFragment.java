@@ -19,7 +19,6 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.adapter.SingleRecordAdapter;
 import com.example.aircraftfight_android.callback.RecordActivityCallBack;
 import com.example.aircraftfight_android.game.application.Game;
-import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.helper.SingleRecord;
 import com.example.aircraftfight_android.helper.SingleRecordHelper;
 
@@ -29,7 +28,7 @@ public class SingleRecordFragment extends Fragment {
     private SingleRecordHelper recordHelper;
     private LinearLayout mRecordDetail;
 
-    private String gameMode="";
+    private final String gameMode;
 
     SingleRecordAdapter singleAdapter;
 
@@ -105,17 +104,14 @@ public class SingleRecordFragment extends Fragment {
         TextView scoreView = view.findViewById(R.id.text_view_record_score);
         TextView dateView = view.findViewById(R.id.text_view_record_date);
 
-        RecordActivityCallBack callBack = new RecordActivityCallBack() {
-            @Override
-            public void recordOnClick(int position) {
-                curSelectedPosition = position;
-                SingleRecord record = recordHelper.getRecord(position);
+        RecordActivityCallBack callBack = position -> {
+            curSelectedPosition = position;
+            SingleRecord record = recordHelper.getRecord(position);
 
-                playerNameView.setText(record.getPlayerName());
-                scoreView.setText(String.valueOf(record.getScore()));
-                dateView.setText(record.getDate().toString());
-                showRecordDetail();
-            }
+            playerNameView.setText(record.getPlayerName());
+            scoreView.setText(String.valueOf(record.getScore()));
+            dateView.setText(record.getDate().toString());
+            showRecordDetail();
         };
 
         singleAdapter = new SingleRecordAdapter(
@@ -135,12 +131,9 @@ public class SingleRecordFragment extends Fragment {
                 TranslateAnimation.RELATIVE_TO_SELF, -1, TranslateAnimation.RELATIVE_TO_SELF, 0);
         ctrlAnimation.setDuration(200);     //设置动画的过渡时间
 
-        mRecordDetail.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mRecordDetail.startAnimation(ctrlAnimation);
-                mRecordDetail.setVisibility(View.VISIBLE);
-            }
+        mRecordDetail.postDelayed(() -> {
+            mRecordDetail.startAnimation(ctrlAnimation);
+            mRecordDetail.setVisibility(View.VISIBLE);
         }, 100);
     }
 
@@ -155,12 +148,9 @@ public class SingleRecordFragment extends Fragment {
                 TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, -1);
         ctrlAnimation.setDuration(200);     //设置动画的过渡时间
 
-        mRecordDetail.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mRecordDetail.startAnimation(ctrlAnimation);
-                mRecordDetail.setVisibility(View.GONE);
-            }
+        mRecordDetail.postDelayed(() -> {
+            mRecordDetail.startAnimation(ctrlAnimation);
+            mRecordDetail.setVisibility(View.GONE);
         }, 100);
     }
 }

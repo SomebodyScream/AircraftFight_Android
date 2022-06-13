@@ -102,8 +102,8 @@ public class MultiRecordFragment extends Fragment implements okhttp3.Callback{
             }else{
                 textWinner.setText("Winner : "+multiRecord.getOpponentName());
             }
-            textMasterScore.setText("Master score : "+String.valueOf(multiRecord.getUserScore()));
-            textGuestScore.setText("Opponent score : "+String.valueOf(multiRecord.getOpponentScore()));
+            textMasterScore.setText("Master score : "+ multiRecord.getUserScore());
+            textGuestScore.setText("Opponent score : "+ multiRecord.getOpponentScore());
             textTime.setText("Time : "+multiRecord.getDate().toString());
             textWinner.setSelected(true);
             textGuestScore.setSelected(true);
@@ -149,9 +149,7 @@ public class MultiRecordFragment extends Fragment implements okhttp3.Callback{
                 refreshRecyclerView();
             });
         }else{
-            activity.runOnUiThread(() -> {
-                refreshRecyclerView();
-            });
+            activity.runOnUiThread(this::refreshRecyclerView);
         }
     }
 

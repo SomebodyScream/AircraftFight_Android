@@ -158,8 +158,6 @@ public class GameActivity extends BaseActivity implements GameCallback
     @SuppressLint("SetTextI18n")
     @Override
     public void onOpponentScoreChanged(String name, int score) {
-        runOnUiThread(()->{
-            opponentScoreView.setText(name + " : " + score);
-        });
+        runOnUiThread(()-> opponentScoreView.setText(name + " : " + score));
     }
 }

@@ -1,10 +1,8 @@
 package com.example.aircraftfight_android.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.activity.MainActivity;
-import com.example.aircraftfight_android.activity.RecordActivity;
-import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.manager.HeroManager;
 
@@ -76,7 +72,7 @@ public class ChoiceFragment extends Fragment {
 
         buttonSinglePlayer.setOnClickListener(v -> activity.replaceFragmentDifficulty());
 
-        buttonRecord.setOnClickListener(v -> activity.startRecordActivity(Game.ONLINE));
+        buttonRecord.setOnClickListener(v -> activity.startRecordActivity());
 
         buttonChange.setOnClickListener(v -> activity.startChangeActivity());
         return view;

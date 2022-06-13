@@ -1,7 +1,6 @@
 package com.example.aircraftfight_android.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aircraftfight_android.R;
-import com.example.aircraftfight_android.callback.RecordActivityCallBack;
 import com.example.aircraftfight_android.helper.MultiRecord;
-import com.example.aircraftfight_android.helper.SingleRecord;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class MultiRecordAdapter extends RecyclerView.Adapter<MultiRecordAdapter.ViewHolder>
 {
-    private List<MultiRecord> multiRecords= new LinkedList<>();
-    private Activity activity;
+    private final List<MultiRecord> multiRecords;
+    private final Activity activity;
 
     public MultiRecordAdapter(Activity activity,List<MultiRecord> multiRecords){
         this.activity = activity;
@@ -58,8 +54,7 @@ public class MultiRecordAdapter extends RecyclerView.Adapter<MultiRecordAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_multi_record, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

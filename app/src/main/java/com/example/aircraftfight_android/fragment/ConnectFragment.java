@@ -139,6 +139,9 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
      */
     @Override
     public void onFailure(@NonNull Call call, @NonNull IOException e) {
+        if(isMatched) {
+            return;
+        }
         executorService.shutdown();
         if(activity != null && !connectFailureFlag){
             imageViewWaiting.setVisibility(View.INVISIBLE);

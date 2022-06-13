@@ -1,14 +1,11 @@
 package com.example.aircraftfight_android.fragment;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,8 +19,6 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.activity.MainActivity;
 import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.manager.HeroManager;
-
-import java.util.zip.Inflater;
 
 public class DifficultyFragment extends Fragment
 {
@@ -54,25 +49,15 @@ public class DifficultyFragment extends Fragment
 
         buttonBack.setBackgroundColor(Color.TRANSPARENT);
 
-        buttonEasy.setOnClickListener(v -> {
-            activity.startGameActivity(Game.EASY);
-        });
+        buttonEasy.setOnClickListener(v -> activity.startGameActivity(Game.EASY));
 
-        buttonNormal.setOnClickListener(v -> {
-            activity.startGameActivity(Game.NORMAL);
-        });
+        buttonNormal.setOnClickListener(v -> activity.startGameActivity(Game.NORMAL));
 
-        buttonHard.setOnClickListener(v -> {
-            activity.startGameActivity(Game.HARD);
-        });
+        buttonHard.setOnClickListener(v -> activity.startGameActivity(Game.HARD));
 
-        buttonBack.setOnClickListener(v -> {
-            activity.replaceFragmentChoice();
-        });
+        buttonBack.setOnClickListener(v -> activity.replaceFragmentChoice());
 
-        buttonChangeHero.setOnClickListener(v -> {
-            activity.startChangeActivity();
-        });
+        buttonChangeHero.setOnClickListener(v -> activity.startChangeActivity());
 
         return view;
     }
