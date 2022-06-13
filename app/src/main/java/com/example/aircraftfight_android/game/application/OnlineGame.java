@@ -92,15 +92,17 @@ public class OnlineGame extends Game implements okhttp3.Callback
         String responseJson = response.body().string();
 
         int opponentScore = -1;
+        String opponentName = "Unknown";
         try{
             JSONObject jsonObject = new JSONObject(responseJson);
             opponentScore = jsonObject.getInt( "score" );
+            opponentName = jsonObject.getString( "opponentId" );
         }
         catch(Exception e){
             Log.e( "GameActivity", e.toString()) ;
             e.printStackTrace();
         }
 
-        callback.onOpponentScoreChanged(opponentScore);
+        callback.onOpponentScoreChanged(opponentName, opponentScore);
     }
 }
