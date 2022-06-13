@@ -5,9 +5,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RecordActivity"
-    android:background="@drawable/main_background">
+    tools:context=".activity.RecordActivity">
 
+    <VideoView
+        android:id="@+id/record_background"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -27,10 +30,21 @@
 
     </FrameLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
+        android:id="@+id/record_activity_fragment_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#8D322525">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,148 +52,66 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/difficulty_view"
+                android:id="@+id/text_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_gravity="start"
-                android:layout_marginStart="18dp"
+                android:textSize="24sp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Difficulty">
+                android:textStyle="bold"
+                android:textColor="@color/white">
             </TextView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_record"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp">
+                android:orientation="horizontal">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <Button
+                    android:id="@+id/mode_online"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Online"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/mode_easy"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Easy"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
 
-    </androidx.core.widget.NestedScrollView>
+                <Button
+                    android:id="@+id/mode_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Normal"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
 
+                <Button
+                    android:id="@+id/mode_hard"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Hard"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
 
-    <LinearLayout
-        android:id="@+id/draw_layout_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:background="@color/black">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:text="Player">
-            </TextView>
-
-            <TextView
-                android:id="@+id/text_view_record_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:singleLine="true"
-                android:textColor="@color/white">
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:text="Score">
-            </TextView>
-
-            <TextView
-                android:id="@+id/text_view_record_score"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:singleLine="true"
-                android:textColor="@color/white">
-            </TextView>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
+    </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:text="Play Time">
-            </TextView>
-
-            <TextView
-                android:id="@+id/text_view_record_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:singleLine="true"
-                android:textColor="@color/white">
-            </TextView>
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_draw_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:textColor="@color/white"
-                android:text="BACK">
-            </Button>
-
-            <Button
-                android:id="@+id/button_draw_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_gravity="end"
-                android:text="DELETE">
-            </Button>
-
-        </FrameLayout>
-
-    </LinearLayout>
 
 </FrameLayout>

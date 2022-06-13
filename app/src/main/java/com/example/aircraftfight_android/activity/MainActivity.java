@@ -89,8 +89,8 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, ChangeActivity.class);
         startActivity(intent);
     }
-    public void startShoppingActivity(){
-        Intent intent = new Intent(this, ShoppingActivity.class);
+    public void startRecordActivity(){
+        Intent intent = new Intent(this, RecordActivity.class);
         startActivity(intent);
     }
 
