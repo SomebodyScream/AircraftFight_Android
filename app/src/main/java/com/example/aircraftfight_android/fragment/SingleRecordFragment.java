@@ -29,15 +29,13 @@ public class SingleRecordFragment extends Fragment {
     private SingleRecordHelper recordHelper;
     private LinearLayout mRecordDetail;
 
-    private final int score;
     private String gameMode="";
 
     SingleRecordAdapter singleAdapter;
 
     private int curSelectedPosition = -1;
 
-    public SingleRecordFragment(int score,String gameMode) {
-        this.score = score;
+    public SingleRecordFragment(String gameMode) {
         if (gameMode == null){
             this.gameMode = Game.EASY;
         }else{
@@ -58,18 +56,8 @@ public class SingleRecordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_single_record, container, false);
         context = getActivity();
 
-        // Get user name
-        String playerName = "Anonymous";
-        AuthenticationHelper authHelper = new AuthenticationHelper(context);
-        if(authHelper.isLogin()){
-            playerName = authHelper.getUsername();
-        }
-
-        // Initial record management and add a new column
+        // Initial record management
         recordHelper = new SingleRecordHelper(context, gameMode);
-        if (score != -1){
-            recordHelper.addRecord(playerName, score);
-        }
 
         // Initial record detail pop window
         initRecordDetailPage(view);

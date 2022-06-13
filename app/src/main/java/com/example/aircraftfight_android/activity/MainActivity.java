@@ -16,6 +16,7 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.ChoiceFragment;
 import com.example.aircraftfight_android.fragment.ConnectFragment;
 import com.example.aircraftfight_android.fragment.DifficultyFragment;
+import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.game.application.ImageManager;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.helper.MusicServiceHelper;
@@ -89,9 +90,16 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, ChangeActivity.class);
         startActivity(intent);
     }
-    public void startRecordActivity(){
+
+    public void startRecordActivity(int score, String gameMode){
         Intent intent = new Intent(this, RecordActivity.class);
+        intent.putExtra("score", score);
+        intent.putExtra("gameMode", Game.ONLINE);
         startActivity(intent);
+    }
+
+    public void startRecordActivity(String gameMode){
+        startRecordActivity(-1, Game.ONLINE);
     }
 
     public void startAuthenticationActivity(){

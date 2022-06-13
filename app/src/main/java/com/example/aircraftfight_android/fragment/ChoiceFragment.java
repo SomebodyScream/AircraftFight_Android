@@ -46,7 +46,7 @@ public class ChoiceFragment extends Fragment {
         ImageButton buttonMultiplayer = view.findViewById(R.id.button_multiplayer);
         ImageButton buttonSinglePlayer = view.findViewById(R.id.button_singleplayer);
         ImageButton buttonSetting = view.findViewById(R.id.button_setting);
-        ImageButton buttonShopping = view.findViewById(R.id.button_record);
+        ImageButton buttonRecord = view.findViewById(R.id.button_record);
         ImageButton buttonChange = view.findViewById(R.id.button_change_hero);
 
         ImageView imageView = view.findViewById(R.id.image_show_hero);
@@ -54,8 +54,6 @@ public class ChoiceFragment extends Fragment {
         Glide.with(activity).load(HeroManager.getHeroManager(activity).drawHeroGif()).into(imageView);
         TextView textVersion = view.findViewById(R.id.text_app_v);
         TextView textUsername = view.findViewById(R.id.text_main_page_user);
-
-        textUsername.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
 
         PackageManager pm = activity.getPackageManager();
         try {
@@ -78,11 +76,7 @@ public class ChoiceFragment extends Fragment {
 
         buttonSinglePlayer.setOnClickListener(v -> activity.replaceFragmentDifficulty());
 
-        buttonShopping.setOnClickListener(v -> {
-            Intent intent = new Intent(activity, RecordActivity.class);
-            intent.putExtra("gameMode", Game.ONLINE);
-            startActivity(intent);
-        });
+        buttonRecord.setOnClickListener(v -> activity.startRecordActivity(Game.ONLINE));
 
         buttonChange.setOnClickListener(v -> activity.startChangeActivity());
         return view;

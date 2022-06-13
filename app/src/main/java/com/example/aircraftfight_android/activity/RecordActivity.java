@@ -18,8 +18,12 @@ import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.fragment.MultiRecordFragment;
 import com.example.aircraftfight_android.fragment.SingleRecordFragment;
 import com.example.aircraftfight_android.game.application.Game;
+import com.example.aircraftfight_android.helper.AuthenticationHelper;
+import com.example.aircraftfight_android.helper.SingleRecordHelper;
 
 public class RecordActivity extends BaseActivity {
+    private String curMode;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +31,16 @@ public class RecordActivity extends BaseActivity {
 
         setContentView(R.layout.activity_record);
 
-        // 获取GameActivity传递的数据
+        // get data
         Intent intent = getIntent();
         int score = intent.getIntExtra("score", -1);
         String gameMode = intent.getStringExtra("gameMode");
 
-        TextView textView = findViewById(R.id.text_mode);
-        textView.setText("Current choose list : mode "+gameMode);
+        // add new record
+        addNewRecord(gameMode, score);
+
+        textView = findViewById(R.id.text_mode);
+        textView.setText("Current choose list : " + gameMode);
         textView.setTypeface(Typeface.createFromAsset(this.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
 
         ImageButton backButton = findViewById(R.id.button_back_record);
@@ -47,31 +54,19 @@ public class RecordActivity extends BaseActivity {
 
         playBackground();
 
+        curMode = gameMode;
         if (gameMode.equals(Game.ONLINE)){
             replaceFragment(new MultiRecordFragment());
         }else{
-            replaceFragment(new SingleRecordFragment(score, gameMode));
+            replaceFragment(new SingleRecordFragment(gameMode));
         }
 
         backButton.setOnClickListener(v -> finish());
 
-        button_online.setOnClickListener(v -> {
-            textView.setText("Current choose list : mode "+Game.ONLINE);
-            replaceFragment(new MultiRecordFragment());
-        });
-
-        button_easy.setOnClickListener(v -> {
-            textView.setText("Current choose list : mode "+Game.EASY);
-            replaceFragment(new SingleRecordFragment(score, Game.EASY));
-        });
-        button_normal.setOnClickListener(v -> {
-            textView.setText("Current choose list : mode "+Game.NORMAL);
-            replaceFragment(new SingleRecordFragment(score, Game.NORMAL));
-        });
-        button_hard.setOnClickListener(v -> {
-            textView.setText("Current choose list : mode "+Game.HARD);
-            replaceFragment(new SingleRecordFragment(score, Game.HARD));
-        });
+        button_online.setOnClickListener(v -> changeRecordMode(Game.ONLINE));
+        button_easy.setOnClickListener(v -> changeRecordMode(Game.EASY));
+        button_normal.setOnClickListener(v -> changeRecordMode(Game.NORMAL));
+        button_hard.setOnClickListener(v -> changeRecordMode(Game.HARD));
 
     }
 
@@ -87,6 +82,38 @@ public class RecordActivity extends BaseActivity {
         mVideoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/raw/bg"));
         mVideoView.start();
         mVideoView.setOnPreparedListener(mp -> mp.setLooping(true));
+    }
+
+    private void changeRecordMode(String gameMode)
+    {
+        if(!gameMode.equals(curMode))
+        {
+            curMode = gameMode;
+            textView.setText("Current choose list : " + gameMode);
+            if(gameMode.equals(Game.ONLINE)){
+                replaceFragment(new MultiRecordFragment());
+            }
+            else{
+                replaceFragment(new SingleRecordFragment(gameMode));
+            }
+        }
+    }
+
+    private void addNewRecord(String gameMode, int score)
+    {
+        if(!gameMode.equals(Game.ONLINE) && score != -1)
+        {
+            // Get user name
+            String playerName = "Anonymous";
+            AuthenticationHelper authHelper = new AuthenticationHelper(this);
+            if(authHelper.isLogin()){
+                playerName = authHelper.getUsername();
+            }
+
+            // add record
+            SingleRecordHelper recordHelper = new SingleRecordHelper(this, gameMode);
+            recordHelper.addRecord(playerName, score);
+        }
     }
 
 }
