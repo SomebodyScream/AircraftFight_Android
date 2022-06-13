@@ -5,9 +5,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RecordActivity"
-    android:background="@drawable/main_background">
+    tools:context=".activity.RecordActivity">
 
+    <VideoView
+        android:id="@+id/record_background"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -32,6 +35,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </FrameLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#8D322525">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/white">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/mode_online"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Online"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
+
+                <Button
+                    android:id="@+id/mode_easy"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Easy"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
+
+                <Button
+                    android:id="@+id/mode_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Normal"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
+
+                <Button
+                    android:id="@+id/mode_hard"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Hard"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
+                    android:layout_weight="1">
+                </Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 
 </FrameLayout>

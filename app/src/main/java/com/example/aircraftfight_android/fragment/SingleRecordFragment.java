@@ -3,7 +3,6 @@ package com.example.aircraftfight_android.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.AuthenticationHelper;
 import com.example.aircraftfight_android.helper.SingleRecord;
 import com.example.aircraftfight_android.helper.SingleRecordHelper;
-
 
 public class SingleRecordFragment extends Fragment {
 
@@ -59,9 +57,6 @@ public class SingleRecordFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_single_record, container, false);
         context = getActivity();
-
-        TextView difficultyView = view.findViewById(R.id.difficulty_view);
-        difficultyView.setText("Mode: " + gameMode);
 
         // Get user name
         String playerName = "Anonymous";

@@ -15,20 +15,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/difficulty_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_gravity="start"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="10dp"
-                android:text="Difficulty">
-            </TextView>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_record"
                 android:layout_width="match_parent"
@@ -37,6 +23,18 @@
                 android:layout_marginHorizontal="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/teal_700"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                tools:ignore="HardcodedText"
+                android:text="--End of List--" />
 
         </LinearLayout>
 

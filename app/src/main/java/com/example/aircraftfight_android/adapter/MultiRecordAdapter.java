@@ -1,5 +1,8 @@
 package com.example.aircraftfight_android.adapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +22,14 @@ import java.util.List;
 public class MultiRecordAdapter extends RecyclerView.Adapter<MultiRecordAdapter.ViewHolder>
 {
     private List<MultiRecord> multiRecords= new LinkedList<>();
+    private Activity activity;
 
-    public MultiRecordAdapter(List<MultiRecord> multiRecords){
+    public MultiRecordAdapter(Activity activity,List<MultiRecord> multiRecords){
+        this.activity = activity;
         this.multiRecords = multiRecords;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView nameMaster;
         TextView nameGuest;
         TextView scoreMaster;
@@ -40,6 +45,11 @@ public class MultiRecordAdapter extends RecyclerView.Adapter<MultiRecordAdapter.
             scoreMaster = view.findViewById(R.id.master_score);
             scoreGuest = view.findViewById(R.id.guest_score);
             dateView = view.findViewById(R.id.multi_time);
+            nameMaster.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
+            nameGuest.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
+            scoreMaster.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
+            scoreGuest.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
+            dateView.setTypeface(Typeface.createFromAsset(activity.getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
         }
     }
 
