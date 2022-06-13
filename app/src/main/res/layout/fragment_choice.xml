@@ -22,6 +22,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:textSize="30sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/averia_serif_libre_italic_4"
                 android:textColor="#FFFFFF">
             </TextView>
 

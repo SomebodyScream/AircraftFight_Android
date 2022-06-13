@@ -7,9 +7,9 @@
     tools:context=".activity.MainActivity"
     android:fitsSystemWindows="true">
 
-    <VideoView
+    <com.example.aircraftfight_android.mview.BackgroundVideoView
         android:id="@+id/main_background"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <FrameLayout

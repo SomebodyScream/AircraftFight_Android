@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -39,9 +40,12 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
 
     private MainActivity activity;
     private ImageView imageViewWaiting;
+    private ImageButton buttonConnect;
 
     private ScheduledExecutorService executorService = null;
     private boolean connectFailureFlag = false;
+    private boolean isMatched = false;
+    private boolean isConnecting = false;
 
     public ConnectFragment() {
         // Required empty public constructor
@@ -56,13 +60,12 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         activity = (MainActivity) getActivity();
-        AuthenticationHelper authHelper = new AuthenticationHelper(activity);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_connect, container, false);
 
         ImageButton buttonBack = (ImageButton) view.findViewById(R.id.button_back_connect);
-        ImageButton buttonStart = view.findViewById(R.id.button_start_connect);
+        buttonConnect = view.findViewById(R.id.button_start_connect);
         ImageButton buttonChangeHero = view.findViewById(R.id.button_change_hero_connect);
         imageViewWaiting = view.findViewById(R.id.image_waiting);
 
@@ -93,30 +96,42 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         Glide.with(activity).load(R.drawable.icon_load).into(imageViewWaiting);
         imageViewWaiting.setVisibility(View.INVISIBLE);
 
-        buttonStart.setOnClickListener(v -> {
-            if(!authHelper.isLogin()) // user didn't login
-            {
-                activity.startAuthenticationActivity();
-            }
-            else
-            {
-                connectFailureFlag = false;
-                imageViewWaiting.setVisibility(View.VISIBLE);
-                executorService = new ScheduledThreadPoolExecutor(1,
-                        new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
-
-                Runnable requestTask = () -> {
-                    String url = HttpHelper.IP + "/match?" + "user=" + authHelper.getUsername();
-                    HttpHelper.sendGetRequest(url, this);
-                };
-
-                Log.e("ConnectFragment", "start connect");
-
-                executorService.scheduleWithFixedDelay(requestTask, 0, 500, TimeUnit.MILLISECONDS);
-            }
+        buttonConnect.setOnClickListener(v -> {
+            startConnect();
         });
 
         return view;
+    }
+
+    private void startConnect()
+    {
+        AuthenticationHelper authHelper = new AuthenticationHelper(activity);
+
+        if(!authHelper.isLogin()) // user didn't login
+        {
+            activity.startAuthenticationActivity();
+        }
+        else
+        {
+            connectFailureFlag = false;
+            isMatched = false;
+
+            imageViewWaiting.setVisibility(View.VISIBLE);
+            executorService = new ScheduledThreadPoolExecutor(1,
+                    new BasicThreadFactory.Builder().namingPattern("match-request-%d").daemon(true).build());
+
+            Runnable requestTask = () -> {
+                String url = HttpHelper.IP + "/match?" + "user=" + authHelper.getUsername();
+                HttpHelper.sendGetRequest(url, this);
+            };
+
+            executorService.scheduleWithFixedDelay(requestTask, 0, 1000, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    private void cancelConnect()
+    {
+        // TODO
     }
 
     /**
@@ -139,15 +154,17 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
      */
     @Override
     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//        Log.d("ConnectFragment", "on response start");
+        if(isMatched) {
+            return;
+        }
 
         String responseJson = response.body().string();
         ServerResponseData responseData = new ServerResponseData(responseJson);
 
         if(responseData.isMatched())
         {
+            isMatched = true;
             executorService.shutdown();
-            Log.d( "ConnectFragment", "matched roomId: " + responseData.getRoomId());
 
             if(activity != null){
                 activity.runOnUiThread(()->{
@@ -169,7 +186,6 @@ public class ConnectFragment extends Fragment implements okhttp3.Callback{
         public ServerResponseData(String responseJson)
         {
             parseResponseJson(responseJson);
-//            Log.d( "ConnectFragment", "roomId: " + roomId + " match_state: " + match_state);
         }
 
         public String getRoomId() {
