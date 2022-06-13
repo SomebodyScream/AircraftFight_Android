@@ -44,7 +44,7 @@
         android:layout_margin="10dp"
         android:layout_gravity="bottom"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#8D322525">
+        app:cardBackgroundColor="#BE322525">
 
         <LinearLayout
             android:layout_width="match_parent"

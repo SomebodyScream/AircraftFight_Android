@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aircraftfight_android.R;
 import com.example.aircraftfight_android.manager.HeroManager;
 
-public class ChangeActivity extends AppCompatActivity {
+public class ChangeActivity extends BaseActivity {
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -23,24 +23,11 @@ public class ChangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change);
 
-        TextView textReimu = findViewById(R.id.text_reimu);
-        TextView textMarisa = findViewById(R.id.text_marisa);
-        TextView textYoumu = findViewById(R.id.text_youmu);
-
         Button buttonReimu = findViewById(R.id.choose_reimu);
         Button buttonMarisa = findViewById(R.id.choose_marisa);
         Button buttonYoumu = findViewById(R.id.choose_youmu);
 
         ImageButton buttonBack  = findViewById(R.id.button_back_change);
-
-
-        textReimu.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-        textMarisa.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-        textYoumu.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-
-        buttonReimu.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-        buttonMarisa.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
-        buttonYoumu.setTypeface(Typeface.createFromAsset(getAssets(), "AveriaSerifLibre-Italic-4.ttf"));
 
         buttonBack.setBackgroundColor(Color.TRANSPARENT);
 
@@ -49,14 +36,17 @@ public class ChangeActivity extends AppCompatActivity {
         switch (HeroManager.getHeroManager(this).getSelfId()){
             case HeroManager.HERO_ID_REIMU:{
                 buttonReimu.setText("CHOSEN");
+                buttonReimu.setTextColor(Color.rgb(255,215,0));
                 break;
             }
             case HeroManager.HERO_ID_MARISA:{
                 buttonMarisa.setText("CHOSEN");
+                buttonMarisa.setTextColor(Color.rgb(255,215,0));
                 break;
             }
             case HeroManager.HERO_ID_YOUMU:{
                 buttonYoumu.setText("CHOSEN");
+                buttonYoumu.setTextColor(Color.rgb(255,215,0));
                 break;
             }
         }
@@ -65,6 +55,9 @@ public class ChangeActivity extends AppCompatActivity {
             buttonReimu.setText("CHOSEN");
             buttonMarisa.setText("CHOOSE");
             buttonYoumu.setText("CHOOSE");
+            buttonReimu.setTextColor(Color.rgb(255,215,0));
+            buttonMarisa.setTextColor(Color.rgb(255,255,255));
+            buttonYoumu.setTextColor(Color.rgb(255,255,255));
             HeroManager.getHeroManager(this).setSelfId(HeroManager.HERO_ID_REIMU);
         });
 
@@ -72,6 +65,9 @@ public class ChangeActivity extends AppCompatActivity {
             buttonReimu.setText("CHOOSE");
             buttonMarisa.setText("CHOSEN");
             buttonYoumu.setText("CHOOSE");
+            buttonReimu.setTextColor(Color.rgb(255,255,255));
+            buttonMarisa.setTextColor(Color.rgb(255,215,0));
+            buttonYoumu.setTextColor(Color.rgb(255,255,255));
             HeroManager.getHeroManager(this).setSelfId(HeroManager.HERO_ID_MARISA);
         });
 
@@ -79,6 +75,9 @@ public class ChangeActivity extends AppCompatActivity {
             buttonReimu.setText("CHOOSE");
             buttonMarisa.setText("CHOOSE");
             buttonYoumu.setText("CHOSEN");
+            buttonReimu.setTextColor(Color.rgb(255,255,255));
+            buttonMarisa.setTextColor(Color.rgb(255,255,255));
+            buttonYoumu.setTextColor(Color.rgb(255,215,0));
             HeroManager.getHeroManager(this).setSelfId(HeroManager.HERO_ID_YOUMU);
         });
 

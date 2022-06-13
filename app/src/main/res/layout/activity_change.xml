@@ -49,7 +49,7 @@
                     android:layout_height="55dp"
                     android:src="@drawable/title_choose_hero"
                     android:scaleType="fitCenter"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="20dp"
                     android:layout_gravity="center"
@@ -70,11 +70,20 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
-                    <ImageView
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:src="@drawable/cg_reimu">
-                    </ImageView>
+                        app:cardCornerRadius="10dp"
+                        app:cardBackgroundColor="#00FFFFFF">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/cg_reimu">
+                        </ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
+
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -83,10 +92,12 @@
                             android:id="@+id/text_reimu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:text="REIMU"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             android:textSize="40sp"
+                            android:singleLine="true"
                             android:layout_gravity="center_horizontal|top">
                         </TextView>
                         <Button
@@ -95,6 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center_horizontal"
                             android:text="CHOOSE"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             style="?android:attr/buttonBarButtonStyle">
@@ -114,11 +126,21 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
-                    <ImageView
+
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:src="@drawable/cg_marisa">
-                    </ImageView>
+                        app:cardCornerRadius="10dp"
+                        app:cardBackgroundColor="#00FFFFFF">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/cg_marisa">
+                        </ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
+
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -128,9 +150,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="MARISA"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             android:textSize="40sp"
+                            android:singleLine="true"
                             android:layout_gravity="center_horizontal|top">
                         </TextView>
                         <Button
@@ -139,6 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center_horizontal"
                             android:text="CHOOSE"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             style="?android:attr/buttonBarButtonStyle">
@@ -159,11 +184,19 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
-                    <ImageView
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:src="@drawable/cg_youmu">
-                    </ImageView>
+                        app:cardCornerRadius="10dp"
+                        app:cardBackgroundColor="#00FFFFFF">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/cg_reimu">
+                        </ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -174,8 +207,10 @@
                             android:layout_height="wrap_content"
                             android:text="YOUMU"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:textStyle="bold"
                             android:textSize="40sp"
+                            android:singleLine="true"
                             android:layout_gravity="center_horizontal|top">
                         </TextView>
                         <Button
@@ -184,6 +219,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center_horizontal"
                             android:text="CHOOSE"
+                            android:fontFamily="@font/averia_serif_libre_italic_4"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             style="?android:attr/buttonBarButtonStyle">
