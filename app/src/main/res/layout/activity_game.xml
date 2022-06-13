@@ -16,27 +16,34 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_gravity="start">
         <TextView
             android:id="@+id/life_view"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="#ff0000">
+            android:fontFamily="@font/averia_serif_libre_italic_4"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF">
         </TextView>
         <TextView
             android:id="@+id/score_view"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="#ff0000">
+            android:fontFamily="@font/averia_serif_libre_italic_4"
+            android:textStyle="bold"
+            android:textColor="#FFD700">
         </TextView>
         <TextView
             android:id="@+id/opponent_score_view"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/averia_serif_libre_italic_4"
             android:textSize="30sp"
-            android:textColor="#ff0000">
+            android:textStyle="bold"
+            android:textColor="#FFD700">
         </TextView>
     </LinearLayout>
 

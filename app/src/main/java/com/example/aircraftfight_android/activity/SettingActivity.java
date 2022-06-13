@@ -10,6 +10,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.aircraftfight_android.R;
+import com.example.aircraftfight_android.game.application.Game;
 import com.example.aircraftfight_android.helper.SharedPreferenceHelper;
 import com.google.android.material.card.MaterialCardView;
 
@@ -85,7 +86,7 @@ public class SettingActivity extends BaseActivity {
         buttonBack.setOnClickListener(v -> finish());
 
         buttonClearRecord.setOnClickListener(v -> {
-            helper.clearProperty(SP_LABEL_RECORD);
+            helper.clearProperty("Records");
             Toast.makeText(this, "Records cleared!", Toast.LENGTH_SHORT).show();
         });
 

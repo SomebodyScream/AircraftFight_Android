@@ -71,6 +71,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
+                        android:layout_marginStart="2dp"
                         android:orientation="vertical">
 
                         <FrameLayout
@@ -107,11 +108,11 @@
 
                         <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="56dp">
+                            android:layout_height="54dp">
                             <ImageButton
                                 android:id="@+id/button_record"
-                                android:layout_width="140dp"
-                                android:layout_height="56dp"
+                                android:layout_width="143dp"
+                                android:layout_height="54dp"
                                 android:layout_gravity="start"
                                 android:scaleType="fitCenter"
                                 android:background="@drawable/single_button_4"

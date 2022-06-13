@@ -44,8 +44,9 @@
                     android:src="@drawable/title_about_this_game"
                     android:scaleType="fitStart"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginStart="23dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
                     tools:ignore="HardcodedText"
                     android:contentDescription="setting title">
                 </ImageView>
@@ -149,6 +150,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
                     tools:ignore="HardcodedText"
                     android:contentDescription="setting title">
                 </ImageView>
@@ -178,18 +180,37 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginHorizontal="5dp">
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical|start"
-                                    android:text="Account Config"
-                                    android:layout_margin="10dp"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/averia_serif_libre_italic_4"
-                                    tools:ignore="HardcodedText">
-                                </TextView>
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="Account Config"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="28sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="Set up your account or Register"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="18sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                </LinearLayout>
 
                                 <ImageButton
                                     android:id="@+id/button_set_account"
@@ -208,21 +229,40 @@
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginVertical="10dp"
                                 android:layout_marginHorizontal="5dp">
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical|start"
-                                    android:text="Offline Record"
-                                    android:layout_margin="10dp"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/averia_serif_libre_italic_4"
-                                    tools:ignore="HardcodedText">
-                                </TextView>
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="Offline Record"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="28sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="Choose if sync online records"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="18sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                </LinearLayout>
 
                                 <Switch
                                     android:id="@+id/switch_offline_record"
@@ -243,12 +283,13 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="42dp"
                     android:src="@drawable/title_local_setting"
                     android:scaleType="fitStart"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="18dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="4dp"
                     tools:ignore="HardcodedText"
                     android:contentDescription="setting title">
                 </ImageView>
@@ -282,42 +323,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical|start"
-                                    android:text="Clear records"
-                                    android:layout_margin="10dp"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/averia_serif_libre_italic_4"
-                                    tools:ignore="HardcodedText">
-                                </TextView>
-
-                                <ImageButton
-                                    android:id="@+id/button_clear_record"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:src="@drawable/ic_confirm"
-                                    android:scaleType="centerInside"
-                                    android:layout_marginVertical="5dp"
-                                    tools:ignore="HardcodedText"
-                                    android:contentDescription="back button">
-                                </ImageButton>
-
-                            </FrameLayout>
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginHorizontal="5dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical|start"
                                     android:text="Background Music"
                                     android:layout_margin="10dp"
-                                    android:textSize="24sp"
+                                    android:textSize="28sp"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/averia_serif_libre_italic_4"
@@ -346,7 +354,7 @@
                                     android:layout_gravity="center_vertical|start"
                                     android:text="Sound Effect"
                                     android:layout_margin="10dp"
-                                    android:textSize="24sp"
+                                    android:textSize="28sp"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/averia_serif_libre_italic_4"
@@ -368,6 +376,97 @@
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:src="@drawable/title_danger_zone"
+                    android:scaleType="fitStart"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="4dp"
+                    tools:ignore="HardcodedText"
+                    android:contentDescription="setting title">
+                </ImageView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#8D322525"
+                    android:layout_marginHorizontal="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="10dp"
+                                android:layout_marginHorizontal="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="Clear records"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="28sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|start"
+                                        android:text="This will clear all local records and cache"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:textSize="18sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/averia_serif_libre_italic_4"
+                                        tools:ignore="HardcodedText">
+                                    </TextView>
+
+                                </LinearLayout>
+
+                                <ImageButton
+                                    android:id="@+id/button_clear_record"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="end|center_vertical"
+                                    android:src="@drawable/ic_confirm"
+                                    android:scaleType="centerInside"
+                                    android:layout_marginVertical="5dp"
+                                    tools:ignore="HardcodedText"
+                                    android:contentDescription="back button">
+                                </ImageButton>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
 
                 <TextView
                     android:layout_width="wrap_content"
