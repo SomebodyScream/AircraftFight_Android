@@ -46,6 +46,7 @@ public class HeroManager {
         SharedPreferenceHelper spHelper = new SharedPreferenceHelper(context,SP_DATABASE_HERO);
         selfId = (int)spHelper.readProperty(SP_LABEL_SELF_ID,SharedPreferenceHelper.READ_MODE_INT);
         if (selfId == SharedPreferenceHelper.DEFAULT_INT){
+            selfId = 1;
             spHelper.writeProperty(SP_LABEL_SELF_ID,1);
         }
     }

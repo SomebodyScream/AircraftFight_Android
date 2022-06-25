@@ -72,6 +72,12 @@ public class RecordActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        playBackground();
+        super.onResume();
+    }
+
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
